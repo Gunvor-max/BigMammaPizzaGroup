@@ -1,0 +1,27 @@
+﻿@page
+@model BigMammaPizzaGroup.Pages.ChangeItem.ChangeItemModel
+@{
+}
+<h1>Ændre eksisterende Pizza</h1>
+
+
+<form method="post">
+    <div class="form-group>">
+        <label>Pizza Nummer</label>: @Model.NytPizzaNummer<br />
+        <input type="hidden" asp-for="@Model.NytPizzaNummer" /><br />
+
+        <label>Pizza Navn</label><br />
+        <input class="form-control" asp-for="@Model.NytPizzaNavn" /><br />
+        <span asp-validation-for="@Model.NytPizzaNavn" class="text-danger"></span><br />
+
+
+        <label>Pizza Pris</label><br />
+        <input class="form-control" asp-for="@Model.NyPris" /><br />
+
+        <label>Pizza Topping</label> - @Model.NyDescription<br />
+        <input class="form-control" asp-for="@Model.NyDescription" /><br />
+
+        <input type="submit" value="Ændre pizza" class="btn btn-success" asp-page-handler="Change" />
+        <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
+    </div>
+</form>

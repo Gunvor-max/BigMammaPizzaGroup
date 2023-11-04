@@ -1,0 +1,35 @@
+﻿@page
+@using BigMammaPizzaGroup.Model;
+@model BurgerMenuModel
+
+@{
+    ViewData["Title"] = "Burger";
+}
+
+<h1 class="jumbotron">Burger Menu</h1>
+
+<table class="table-hover">
+    <thead>
+        <tr>
+            <th>nummer</th>
+            <th>Navn</th>
+            <th>Buntype</th>
+            <th>Beskrivelse</th>
+            <th>pris</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Burger b in Model.BurgerMenukort)
+        {
+            <tr>
+                <td>@b.Number</td>
+                <td>@b.Name</td>
+                <th>@b.Bun</th>
+                <td>@b.GetToppings()</td>
+                <td>@b.Price Kr.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>That was it</p>

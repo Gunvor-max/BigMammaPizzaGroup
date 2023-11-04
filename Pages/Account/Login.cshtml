@@ -1,0 +1,50 @@
+﻿@page
+@model BigMammaPizzaGroup.Pages.Account.LoginModel
+@{
+}
+<form method="post" class="needs-validation">
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+    <div class="form-group">
+        <label asp-for="Credential.UserName" for="uname">Username</label>
+        <input type="text" asp-for="@Model.Credential.UserName" class="form-control" id="uname" placeholder="Enter username" required>
+        <span class="text-danger" asp-validation-for="@Model.Credential.UserName"></span>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Credential.Password" for="pwd">Password:</label>
+        <input type="password" asp-for="@Model.Credential.Password" class="form-control" id="pwd" placeholder="Enter password" required>
+        <span class="text-danger" asp-validation-for="@Model.Credential.Password"></span>
+        <div class="valid-feedback">Valid.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
+    </div>
+    <div class="form-group form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="remember" required> I am not a robot
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Check this checkbox to continue.</div>
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<script>
+    // Disable form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Get the forms we want to add validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

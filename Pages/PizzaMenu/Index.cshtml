@@ -1,0 +1,35 @@
+﻿@page
+@using BigMammaPizzaGroup.Model;
+@model BigMammaPizzaGroup.Pages.Menukort.PizzaMenuModel
+@{
+    
+    ViewData["Title"] = "Pizza Menu";
+}
+
+<h1 class="jumbotron">Pizza Menu</h1>
+
+<table class="table-hover">
+    <thead>
+        <tr>
+            <th>Nummer</th>
+            <th>Navn</th>
+            <th>Beskrivelse</th>
+            <th>pris</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        @foreach (Pizza p in Model.Pizza)
+        {   
+            <tr>
+                <td>@p.Number</td>
+                <td>@p.Name</td>
+                <td>@p.GetToppings()</td>
+                <td>@p.Price Kr.</td>
+                <td><a asp-page="/Change/ChangeItem" asp-route-nummer="@p.Number">Ændre</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>That was it</p>
