@@ -1,0 +1,137 @@
+﻿@page
+@model BigMammaPizzaGroup.Pages.DashBoard.ControlPanelModel
+@{
+
+}
+
+
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebarHeader">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Sidebar Headings</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Link 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#servicesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Services</a>
+                <ul class="collapse list-unstyled" id="servicesSubmenu">
+                    <li>
+                        <a href="#">Service 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Service 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Service 3</a>
+                    </li>
+                </ul>
+                <a href="#">Contact Us</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content  -->
+    <div id="main">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-success" onclick="toggleNav()">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <h2>Collapsible Sidebar Using Bootstrap 5</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+        <div class="line"></div>
+
+        <h2>Lorem Ipsum Dolor</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+
+        <div class="line"></div>
+
+        <h2>Lorem Ipsum Dolor</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+        <div class="line"></div>
+
+        <h3>Lorem Ipsum Dolor</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+</div>
+
+<script>
+
+    function toggleNav() {
+        MenuStatus = document.getElementById('sidebar').style.display;
+        if ( MenuStatus == 'none' ) {
+          document.getElementById('sidebar').style.display = 'block';
+        } else {
+          document.getElementById('sidebar').style.display = 'none';
+        }
+      }
+
+</script>
+
+
+
+@* <div class="w-25 p-3" style="background-color: #eee;">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Kontrol Panel</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a text="dark" asp-page="/AddNewPizza/Index">Tilføj ny pizza</a></td>
+            </tr>
+            <tr>
+                <td><a asp-page="/Change/ChangeItem">Ændre eksisterende pizza</a></td>
+            </tr>
+            <tr>
+                <td><a asp-page="/Change/ChangeItem">Ændre eksisterende pizza</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>  *@
