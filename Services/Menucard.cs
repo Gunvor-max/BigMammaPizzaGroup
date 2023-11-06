@@ -45,7 +45,6 @@ namespace BigMammaPizzaGroup.Services
         }
         private void PopulateDrinksRepository()
         {
-            Menu.Clear();
             Menu.Add(23, new Drink("Coca Cola", 15, "33 cl"));
             Menu.Add(24, new Drink("Coca Cola", 20, "50 cl"));
             Menu.Add(25, new Drink("Coca Cola", 30, "1,5L"));
