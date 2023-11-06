@@ -145,7 +145,7 @@ namespace BigMammaPizzaGroup.Services
 
         private const string FILENAME = "MenuCard.json";
 
-        public Dictionary<int, Items> ReadFromJson()
+        private Dictionary<int, Items> ReadFromJson()
         {
             if (File.Exists(FILENAME))
             {

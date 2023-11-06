@@ -19,7 +19,7 @@ namespace BigMammaPizzaGroup.Services
             Food = food;
         }
 
-        public double getprice()
+        public double GetPrice()
         {
             double price = 0;
             foreach (Items menuitem in Food)
