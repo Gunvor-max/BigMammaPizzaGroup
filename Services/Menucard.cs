@@ -45,7 +45,21 @@ namespace BigMammaPizzaGroup.Services
         }
         private void PopulateDrinksRepository()
         {
-            Menu.Add(23, new Drink("Coca Cola", 15, "Small"));
+            Menu.Clear();
+            Menu.Add(23, new Drink("Coca Cola", 15, "33 cl"));
+            Menu.Add(24, new Drink("Coca Cola", 20, "50 cl"));
+            Menu.Add(25, new Drink("Coca Cola", 30, "1,5L"));
+            Menu.Add(26, new Drink("Faxe Kondi", 15, "33 cl"));
+            Menu.Add(27, new Drink("Faxe Kondi", 20, "50 cl"));
+            Menu.Add(28, new Drink("Faxe Kondi", 30, "1,5L"));
+            Menu.Add(29, new Drink("Pepsi Max", 15, "33 cl"));
+            Menu.Add(30, new Drink("Pepsi Max", 20, "50 cl"));
+            Menu.Add(31, new Drink("Pepsi Max", 30, "1,5L"));
+            Menu.Add(32, new Drink("Appelsin Vand", 10, "33 cl"));
+            Menu.Add(33, new Drink("Appelsin Vand", 15, "50 cl"));
+            Menu.Add(34, new Drink("Ayran", 10, "250 Ml"));
+            Menu.Add(35, new Drink("Gazoz", 10, "33 cl"));
+
         }
 
         public Items AddItem(Items item)
