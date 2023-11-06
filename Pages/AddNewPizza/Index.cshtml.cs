@@ -40,9 +40,10 @@ namespace BigMammaPizzaGroup.Pages.AddNewPizza
 
         public string ListToString()
         {
-            foreach(string top in  NyToppingList)
+            NyToppingString = "";
+            foreach(string top in NyToppingList)
             {
-                NyToppingString += top + ", ";
+                NyToppingString += top == NyToppingList.First() ? top : ", " + top;
             }
             return NyToppingString;
         }
