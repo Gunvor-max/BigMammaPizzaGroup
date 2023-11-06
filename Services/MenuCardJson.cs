@@ -6,7 +6,7 @@ namespace BigMammaPizzaGroup.Services
 {
     public class MenuCardJson : IMenucard
     {
-        public Dictionary<int, Items> Menu = new Dictionary<int, Items>();
+        public Dictionary<int, Items> Menu;
 
         // konstruktør
         public MenuCardJson()
@@ -138,7 +138,7 @@ namespace BigMammaPizzaGroup.Services
 
         private const string FILENAME = "MenuCard.json";
 
-        private Dictionary<int, Items> ReadFromJson()
+        public Dictionary<int, Items> ReadFromJson()
         {
             if (File.Exists(FILENAME))
             {
