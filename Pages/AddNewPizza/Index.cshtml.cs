@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BigMammaPizzaGroup.Pages.AddNewPizza
 {
-    [Authorize]
+    //[Authorize]
     public class IndexModel : PageModel
     {
         public Menucard _repo;
@@ -16,6 +16,7 @@ namespace BigMammaPizzaGroup.Pages.AddNewPizza
         public IndexModel(Menucard repo)
         {
             _repo = repo;
+            
         }
 
         [BindProperty]
@@ -34,41 +35,44 @@ namespace BigMammaPizzaGroup.Pages.AddNewPizza
 
         [BindProperty]
         public string NyDescription { get; set; }
-        public List<string> NyToppingList = new List<string>();
-        public string NyToppingString = "";
+        public static List<string> NyToppingList = new List<string>();
+        public static string NyToppingString = "";
 
+        public string ListToString()
+        {
+            foreach(string top in  NyToppingList)
+            {
+                NyToppingString += top + ", ";
+            }
+            return NyToppingString;
+        }
         public void OnGet()
         {
             NytPizzaNummer = _repo.NextNumber();
         }
 
-        
-        public IActionResult OnPost()
-        {
-            if (Request.Form["action"] == "TilføjTopping")
+
+        public IActionResult OnPostOpret()
+        { 
+            if (!ModelState.IsValid)
             {
-                NyToppingList.Add(NyDescription);
+                return Page();
             }
-
-            if (Request.Form["action"]=="OpretNyPizza")
-            { 
-                if (!ModelState.IsValid)
-                {
-                    return Page();
-                }
-                //Menucard nypizza = new Menucard();
-                //Pizza pizza = new Pizza();
-                NyToppingList.Add(NyDescription);
-                Pizza newpizza = new Pizza(NytPizzaNavn, NyPris, NyToppingList);
-                newpizza.Number = _repo.NextNumber();
-                _repo.AddItem(newpizza);
-
-
-
-                return RedirectToPage("/PizzaMenu/Index");
+            Pizza newpizza = new Pizza(NytPizzaNavn, NyPris, NyToppingList);
+            newpizza.Number = _repo.NextNumber();
+            _repo.AddItem(newpizza);
+            NyToppingString = "";
+            return RedirectToPage("/PizzaMenu/Index");
+        }
+        public IActionResult OnPostTilføj()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
             }
-            
+            NyToppingList.Add(NyDescription);
             return Page();
         }
     }
+
 }

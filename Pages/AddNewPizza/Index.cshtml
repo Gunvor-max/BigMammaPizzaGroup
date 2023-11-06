@@ -18,10 +18,10 @@
         <input class="form-control" asp-for="@Model.NyPris" /><br />
         
         <label>Pizza Topping</label> 
-        <button type="submit" name="action" value="TilføjTopping" class="btn btn-warning">Tilføj Topping</button> 
-        <label>@Model.NyDescription</label>
+        <input type="submit" value="Tilføj Topping" class="btn btn-warning" asp-page-handler="Tilføj"> 
+        <label>@Model.ListToString()</label>
         <input class="form-control" asp-for="@Model.NyDescription" /><br />
 
-        <button type="submit" name="action" value="OpretNyPizza" class="btn btn-success">Opret Ny Pizza</button>
+        <input type="submit" value="Opret Ny Pizza" class="btn btn-success"asp-page-handler="Opret">
     </div>
 </form>

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BigMammaPizzaGroup.Pages.ChangeItem
 {
-    [Authorize()]
+    //[Authorize()]
     public class ChangeItemModel : PageModel
     {
         public Menucard _repo;
@@ -82,7 +82,7 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
                 //    Burger b = item as Burger;
                 //    NyDescription = b.GetToppings();
                 //}
-                //else if (item is Drinks)
+                //else if (item is Drinks)b
                 //{
                 //    Drinks d = item as Drinks;
                 //}
