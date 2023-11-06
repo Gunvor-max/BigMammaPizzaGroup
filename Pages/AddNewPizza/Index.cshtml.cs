@@ -11,9 +11,9 @@ namespace BigMammaPizzaGroup.Pages.AddNewPizza
     [Authorize]
     public class IndexModel : PageModel
     {
-        public Menucard _repo;
+        public IMenucard _repo;
 
-        public IndexModel(Menucard repo)
+        public IndexModel(IMenucard repo)
         {
             _repo = repo;
         }

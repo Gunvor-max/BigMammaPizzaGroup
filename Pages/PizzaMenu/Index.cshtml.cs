@@ -8,10 +8,10 @@ namespace BigMammaPizzaGroup.Pages.Menukort
     public class PizzaMenuModel : PageModel
     {
         //instance field of Pizzarepository 
-        private Menucard _repo;
+        private IMenucard _repo;
 
         //Dependency constructor 
-        public PizzaMenuModel(Menucard repo)
+        public PizzaMenuModel(IMenucard repo)
         {
             _repo = repo;
         }

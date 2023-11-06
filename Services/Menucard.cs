@@ -2,7 +2,7 @@
 
 namespace BigMammaPizzaGroup.Services
 {
-    public class Menucard
+    public class Menucard : IMenucard
     {
         public Dictionary<int, Items> Menu = new Dictionary<int, Items>();
 
@@ -13,7 +13,7 @@ namespace BigMammaPizzaGroup.Services
             PopulateBurgerRepository();
             PopulateDrinksRepository();
         }
-        
+
 
         public void PopulatePizzaRepository()
         {
@@ -151,13 +151,13 @@ namespace BigMammaPizzaGroup.Services
                 {
                     Menu[i].Number = i;
                 }
-                
+
             }
         }
 
         public int NextNumber()
         {
-           return Menu.Count+1;
+            return Menu.Count + 1;
         }
 
         //public void CheckMenu()

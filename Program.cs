@@ -22,7 +22,7 @@ internal class Program
 
 
         //Indsætter pizzarepository
-        builder.Services.AddSingleton<Menucard>(new Menucard());
+        builder.Services.AddSingleton<IMenucard>(new MenuCardJson());
         
         var app = builder.Build();
 

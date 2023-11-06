@@ -11,10 +11,10 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
     [Authorize()]
     public class ChangeItemModel : PageModel
     {
-        public Menucard _repo;
+        public IMenucard _repo;
         public int _nytpizzanummer;
 
-        public ChangeItemModel(Menucard repo)
+        public ChangeItemModel(IMenucard repo)
         {
             _repo = repo;
         }
