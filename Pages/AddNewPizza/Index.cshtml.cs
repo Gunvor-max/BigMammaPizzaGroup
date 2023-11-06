@@ -11,8 +11,9 @@ namespace BigMammaPizzaGroup.Pages.AddNewPizza
     //[Authorize]
     public class IndexModel : PageModel
     {
-        public IMenucard _repo;
+        private IMenucard _repo;
 
+        //Dependency injection
         public IndexModel(IMenucard repo)
         {
             _repo = repo;

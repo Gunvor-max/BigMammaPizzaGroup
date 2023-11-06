@@ -21,5 +21,11 @@ namespace BigMammaPizzaGroup.Model
             Price = price;
             Name = name;
         }
+
+        //tostring 
+        public override string ToString()
+        {
+            return $"{{{nameof(Name)}={Name}, {nameof(Number)}={Number.ToString()}, {nameof(Price)}={Price.ToString()}}}";
+        }
     }
 }

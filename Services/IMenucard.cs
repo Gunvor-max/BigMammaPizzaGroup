@@ -1,9 +1,12 @@
 ﻿using BigMammaPizzaGroup.Model;
+using System.Text;
 
 namespace BigMammaPizzaGroup.Services
 {
     public interface IMenucard
     {
+        public Dictionary<int, Items> Menu { get; set; }
+
         Items AddItem(Items item);
         void AddNumbers();
         Items DeleteItem(int item);

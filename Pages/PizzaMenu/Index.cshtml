@@ -6,7 +6,7 @@
     ViewData["Title"] = "Pizza Menu";
 }
 
-<h1 class="jumbotron">Pizza Menu</h1>
+<h1 class="jumbotron">Pizza Menu med Pizza p</h1>
 
 <table class="table-hover">
     <thead>
@@ -19,12 +19,12 @@
     </thead>
     <tbody>
         
-        @foreach (Pizza p in Model.Pizza)
+        @foreach (Items p in Model.AllItems)
         {   
             <tr>
                 <td>@p.Number</td>
                 <td>@p.Name</td>
-                <td>@p.GetToppings()</td>
+                 @* <td>@p.GetToppings()</td> *@
                 <td>@p.Price Kr.</td>
                 <td><a asp-page="/Change/ChangeItem" asp-route-nummer="@p.Number">Ændre</a></td>
                 <td><button type="button" value="Tilføj til kurv"></button>Tilføj</td>
@@ -33,4 +33,30 @@
     </tbody>
 </table>
 
+<h1 class="jumbotron">Pizza Menu med Items I</h1>
+
+<table class="table-hover">
+    <thead>
+        <tr>
+            <th>Nummer</th>
+            <th>Navn</th>
+            <th>Beskrivelse</th>
+            <th>pris</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (Items p in Model.AllItems)
+        {
+            <tr>
+                <td>@p.Number</td>
+                <td>@p.Name</td>
+@*                 <td>@p.GetToppings()</td> *@
+                <td>@p.Price Kr.</td>
+                <td><a asp-page="/Change/ChangeItem" asp-route-nummer="@p.Number">Ændre</a></td>
+                <td><button type="button" value="Tilføj til kurv"></button>Tilføj</td>
+            </tr>
+        }
+    </tbody>
+</table>
 <p>That was it</p>

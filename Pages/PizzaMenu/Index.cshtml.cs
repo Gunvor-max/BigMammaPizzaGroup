@@ -16,16 +16,20 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             _repo = repo;
         }
         //property til viewet
-        public List<Items> Pizza { get; set; }
-        public string NyDescription { get; set; }
+        public List<Items> AllItems{ get; set; }
+        //public string NyDescription { get; set; }
 
 
         public void OnGet()
         {
-            Pizza = _repo.GetAllPizzas();
-            _repo.AddNumbers();
+            //AllItems = _repo.GetAllPizzas();
+            //_repo.AddNumbers();
+            AllItems = _repo.GetAllItems();
         }
 
-        
+        public void OnPost()
+        {
+        }
+
     }
 }

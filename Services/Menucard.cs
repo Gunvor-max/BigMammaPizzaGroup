@@ -4,18 +4,26 @@ namespace BigMammaPizzaGroup.Services
 {
     public class Menucard : IMenucard
     {
-        public Dictionary<int, Items> Menu = new Dictionary<int, Items>();
+        //instance field
+        Dictionary<int, Items> _menu;
+
+        //property
+        public Dictionary<int, Items> Menu
+        {  get { return _menu; }
+            set { _menu = value; }
+        }
 
         public Menucard()
         {
-            Menu.Clear();
-            PopulatePizzaRepository();
-            PopulateBurgerRepository();
-            PopulateDrinksRepository();
+            _menu = new Dictionary<int, Items>();
+            //Menu.Clear();
+            //PopulatePizzaRepository();
+            //PopulateBurgerRepository();
+            //PopulateDrinksRepository();
         }
 
 
-        public void PopulatePizzaRepository()
+        private void PopulatePizzaRepository()
         {
             Menu.Add(1, new Pizza("Margherita", 69, ["tomato", "cheese"]));
             Menu.Add(2, new Pizza("Vesuvio", 75, ["tomato", "cheese", "ham"]));
@@ -37,7 +45,7 @@ namespace BigMammaPizzaGroup.Services
             Menu.Add(18, new Pizza("Sole", 78, ["tomato", "cheese", "ham", "bacon", "eggs"]));
             Menu.Add(19, new Pizza("Big Mamma", 90, ["tomato", "gorgonzola", "shrimp", "asparagus", "parma ham"]));
         }
-        public void PopulateBurgerRepository()
+        private void PopulateBurgerRepository()
         {
             Menu.Add(20, new Burger("Big Mac", 40, BunType.Ciabatta, ["tomato", "beef"]));
             Menu.Add(21, new Burger("Tasty Cheese", 25, BunType.Ciabatta, ["cheese"]));

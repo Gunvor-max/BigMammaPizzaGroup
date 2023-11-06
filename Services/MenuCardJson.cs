@@ -6,16 +6,23 @@ namespace BigMammaPizzaGroup.Services
 {
     public class MenuCardJson : IMenucard
     {
-        public Dictionary<int, Items> Menu;
+        //instance field 
+        public Dictionary<int, Items> _menu;
+
+        //property
+        public Dictionary<int, Items> Menu
+        { get { return _menu; }
+        set { _menu = value; }
+        }
 
         // konstruktør
         public MenuCardJson()
         {
-            Menu = ReadFromJson();
+            _menu = ReadFromJson();
         }
         public Items AddItem(Items item)
         {
-            Menu.Add(item.Number, item);
+            _menu.Add(item.Number, item);
             WriteToJson();
             return item;
         }
@@ -48,19 +55,19 @@ namespace BigMammaPizzaGroup.Services
         }
         public List<Items> GetAllItems()
         {
-            return Menu.Values.ToList();
+            return _menu.Values.ToList();
         }
 
         public List<Items> GetAllPizzas()
         {
             List<Items> menu = new List<Items>();
-            for (int i = 1; i <= Menu.Count; i++)
+            for (int i = 1; i <= _menu.Count; i++)
             {
-                if (Menu.ContainsKey(i))
+                if (_menu.ContainsKey(i))
                 {
-                    if (Menu[i] is Pizza)
+                    if (_menu[i] is Pizza)
                     {
-                        menu.Add(Menu[i]);
+                        menu.Add(_menu[i]);
                     }
                 }
             }
@@ -111,7 +118,7 @@ namespace BigMammaPizzaGroup.Services
 
         public int NextNumber()
         {
-            return Menu.Count + 1;
+            return _menu.Count + 1;
         }
 
         //public void CheckMenu()
@@ -130,7 +137,7 @@ namespace BigMammaPizzaGroup.Services
         //}
         public override string ToString()
         {
-            string Output = string.Join(", ", Menu.Values);
+            string Output = string.Join(", ", _menu.Values);
             return $"{{{nameof(Menu)}={Output}}}";
         }
 
@@ -143,9 +150,9 @@ namespace BigMammaPizzaGroup.Services
             if (File.Exists(FILENAME))
             {
                 StreamReader reader = File.OpenText(FILENAME);
-                Dictionary<int, Items> menukort = JsonSerializer.Deserialize<Dictionary<int, Items>>(reader.ReadToEnd());
+                Dictionary<int, Items> katalog = JsonSerializer.Deserialize<Dictionary<int, Items>>(reader.ReadToEnd());
                 reader.Close();
-                return menukort;
+                return katalog;
             }
             else
             {
@@ -158,7 +165,7 @@ namespace BigMammaPizzaGroup.Services
         {
             FileStream fs = new FileStream(FILENAME, FileMode.Create);
             Utf8JsonWriter writer = new Utf8JsonWriter(fs);
-            JsonSerializer.Serialize(writer, Menu);
+            JsonSerializer.Serialize(writer, _menu);
             fs.Close();
         }
 
