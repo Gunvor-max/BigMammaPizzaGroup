@@ -11,7 +11,9 @@
 <table class="table-hover">
     <thead>
         <tr>
+            <th>Nummer</th>
             <th>Navn</th>
+            <th>Størrelse</th>
             <th>pris</th>
         </tr>
     </thead>
@@ -20,7 +22,9 @@
         @foreach (Drink d in Model.DrinksMenukort)
         {
             <tr>
+                <td>@d.Number</td>
                 <td>@d.Name</td>
+                <td>@d.Size</td>
                 <td>@d.Price Kr.</td>
 
             </tr>
