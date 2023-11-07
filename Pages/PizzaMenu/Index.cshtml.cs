@@ -19,12 +19,12 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         public List<Items> AllItems{ get; set; }
         //public string NyDescription { get; set; }
 
-
         public void OnGet()
         {
             //AllItems = _repo.GetAllPizzas();
             //_repo.AddNumbers();
             AllItems = _repo.GetAllItems();
+
         }
 
         public void OnPost()
