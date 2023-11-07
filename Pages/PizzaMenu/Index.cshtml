@@ -8,6 +8,8 @@
 
 <h1 class="jumbotron">Pizza Menu med Pizza p</h1>
 
+<div class="row">
+    <div class="col">
 <form method="post">
 Sorter efter
 <input type="submit" value="nummer" asp-page-handler="Nummer" />
@@ -37,11 +39,17 @@ Sorter efter
                     }
                     </td>
                 <td>@p.Price Kr.</td>
-                <td><button type="button" value="Tilføj til kurv" class="btn btn-secondary">+</button></td>
+                <form method="post">
+                <td><input type="submit" value="Tilføj til kurv" class="btn btn-secondary" asp-page-handler="Tilføj" asp-route-nummer="@p.Number"></td>
+                </form>
+
             </tr>
         }
     </tbody>
 </table>
-
-
+    </div>
+    <div class="col">
+        @Model.Tilføjet
+    </div>
+</div>
 <p>That was it</p>
