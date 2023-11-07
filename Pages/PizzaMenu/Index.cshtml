@@ -29,39 +29,19 @@ Sorter efter
             <tr>
                 <td>@p.Number</td>
                 <td>@p.Name</td>
-                 @* <td>@p.GetToppings()</td> *@
+
+
+                <td>@if(p is Pizza)
+                    { Pizza pizza = p as Pizza;
+                        pizza.GetToppings();
+                    }
+                    </td>
                 <td>@p.Price Kr.</td>
-                <td><a asp-page="/Change/ChangeItem" asp-route-nummer="@p.Number">Ændre</a></td>
-                <td><button type="button" value="Tilføj til kurv" >TilFøj</button></td>
+                <td><button type="button" value="Tilføj til kurv" class="btn btn-secondary">+</button></td>
             </tr>
         }
     </tbody>
 </table>
 
-<h1 class="jumbotron">Pizza Menu med Items I</h1>
 
-<table class="table-hover">
-    <thead>
-        <tr>
-            <th>Nummer</th>
-            <th>Navn</th>
-            <th>Beskrivelse</th>
-            <th>pris</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @foreach (Items p in Model.AllItems)
-        {
-            <tr>
-                <td>@p.Number</td>
-                <td>@p.Name</td>
-@*                 <td>@p.GetToppings()</td> *@
-                <td>@p.Price Kr.</td>
-                <td><a asp-page="/Change/ChangeItem" asp-route-nummer="@p.Number">Ændre</a></td>
-                <td><button type="button" value="Tilføj til kurv">Tilføj</button></td>
-            </tr>
-        }
-    </tbody>
-</table>
 <p>That was it</p>

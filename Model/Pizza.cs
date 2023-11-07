@@ -7,7 +7,7 @@ namespace BigMammaPizzaGroup.Model
         //Properties
 
         public List<string> Toppings { get; set; }  = new List<string>();
-        int Standard;
+        private int Standard;
 
 
         public Pizza()
