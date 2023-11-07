@@ -34,30 +34,35 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
         [BindProperty]
         public string NyDescription { get; set; }
         public List<string> NyToppingList = new List<string>();
+
+        public List<Items> AllItems { get; set; }
         public void OnGet(int nummer)
         {
-            Items item = _repo.SearchItem(nummer);
+            AllItems = _repo.GetAllItems();
+            //Items item = _repo.SearchItem(nummer);
 
 
-            NytPizzaNummer = item.Number;
-            NytPizzaNavn = item.Name;
-            NyPris = item.Price;
-            if (item is Pizza)
-            {
-                Pizza p = item as Pizza;
-                NyDescription = p.GetToppings();
-            }
-            else if (item is Burger)
-            {
-                Burger b = item as Burger;
-                NyDescription = b.GetToppings();
-            }
-            else if (item is Drink) 
-            {
-                Drink d = item as Drink;
-            }
+            ////NytPizzaNummer = item.Number;
+            //NytPizzaNavn = item.Name;
+            //NyPris = item.Price;
+            //if (item is Pizza)
+            //{
+            //    Pizza p = item as Pizza;
+            //    NyDescription = p.GetToppings();
+            //}
+            //else if (item is Burger)
+            //{
+            //    Burger b = item as Burger;
+            //    NyDescription = b.GetToppings();
+            //}
+            //else if (item is Drink) 
+            //{
+            //    Drink d = item as Drink;
+            //}
 
+            //AllItems = _repo.GetAllItems();
         }
+
         public IActionResult OnPostChange()
         {
             if (true)
@@ -94,6 +99,16 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
         public IActionResult OnPostCancel()
         {
             return RedirectToPage("/PizzaMenu/Index");
+        }
+        public IActionResult OnPostPris()
+        {
+            AllItems = _repo.SortItemsPrice();
+            return Page();
+        }
+        public IActionResult OnPostNummer()
+        {
+            AllItems = _repo.GetAllItems();
+            return Page();
         }
     }
 }

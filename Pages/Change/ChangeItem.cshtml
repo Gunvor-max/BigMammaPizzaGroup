@@ -1,27 +1,69 @@
 ﻿@page
+@using BigMammaPizzaGroup.Model;
 @model BigMammaPizzaGroup.Pages.ChangeItem.ChangeItemModel
 @{
 }
 <h1>Ændre eksisterende Pizza</h1>
 
+<div class="row">
+    <div class="col">
+        <form method="post">
+            <div class="form-group>">
+                <label>Pizza Nummer</label>: @Model.NytPizzaNummer<br />
+                <input type="hidden" asp-for="@Model.NytPizzaNummer" /><br />
 
-<form method="post">
-    <div class="form-group>">
-        <label>Pizza Nummer</label>: @Model.NytPizzaNummer<br />
-        <input type="hidden" asp-for="@Model.NytPizzaNummer" /><br />
-
-        <label>Pizza Navn</label><br />
-        <input class="form-control" asp-for="@Model.NytPizzaNavn" /><br />
-        <span asp-validation-for="@Model.NytPizzaNavn" class="text-danger"></span><br />
+                <label>Pizza Navn</label><br />
+                <input class="form-control" asp-for="@Model.NytPizzaNavn" /><br />
+                <span asp-validation-for="@Model.NytPizzaNavn" class="text-danger"></span><br />
 
 
-        <label>Pizza Pris</label><br />
-        <input class="form-control" asp-for="@Model.NyPris" /><br />
+                <label>Pizza Pris</label><br />
+                <input class="form-control" asp-for="@Model.NyPris" /><br />
 
-        <label>Pizza Topping</label> - @Model.NyDescription<br />
-        <input class="form-control" asp-for="@Model.NyDescription" /><br />
+                <label>Pizza Topping</label> - @Model.NyDescription<br />
+                <input class="form-control" asp-for="@Model.NyDescription" /><br />
 
-        <input type="submit" value="Ændre pizza" class="btn btn-success" asp-page-handler="Change" />
-        <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
+                <input type="submit" value="Ændre pizza" class="btn btn-success" asp-page-handler="Change" />
+                <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
+            </div>
+        </form>
     </div>
-</form>
+    <div class="col">
+        <form method="post">
+            Sorter efter
+            <input type="submit" value="nummer" asp-page-handler="Nummer" />
+            <input type="submit" value="pris" asp-page-handler="Pris" />
+        </form>
+        <table class="table-hover">
+            <thead>
+                <tr>
+                    <th>Nummer</th>
+                    <th>Navn</th>
+                    <th>Beskrivelse</th>
+                    <th>pris</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (Items p in Model.AllItems)
+                {
+                    <tr>
+                        <td>@p.Number</td>
+                        <td>@p.Name</td>
+
+
+                        <td>
+                            @if (p is Pizza)
+                            {
+                                Pizza pizza = p as Pizza;
+                                pizza.GetToppings();
+                            }
+                        </td>
+                        <td>@p.Price Kr.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
