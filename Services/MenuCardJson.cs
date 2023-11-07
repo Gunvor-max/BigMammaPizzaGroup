@@ -18,7 +18,7 @@ namespace BigMammaPizzaGroup.Services
         // konstruktør
         public MenuCardJson()
         {
-            _menu = ReadFromJson();
+            _menu = ReadFromJson(); 
         }
         public Items AddItem(Items item)
         {

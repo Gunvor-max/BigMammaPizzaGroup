@@ -16,6 +16,9 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             _repo = repo;
         }
         //property til viewet
+        public int NytPizzaNummer { get; set; }
+        Items item { get; set; }
+        public Items Tilføjet { get; set; }
         public List<Items> AllItems{ get; set; }
         //public string NyDescription { get; set; }
 
@@ -23,14 +26,11 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         {
             //AllItems = _repo.GetAllPizzas();
             //_repo.AddNumbers();
-          
                 AllItems = _repo.GetAllItems();
-     
-            
         }
 
         public IActionResult OnPostPris()
-        {
+        {   
             AllItems = _repo.SortItemsPrice();
             return Page();
         }
@@ -39,6 +39,14 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             AllItems = _repo.GetAllItems();
             return Page();
         }
-        
+        public IActionResult OnPostTilføj(int nummer)
+        {
+            Items item = _repo.SearchItem(nummer);
+            AllItems = _repo.GetAllItems();
+            Tilføjet = item;
+
+            return Page();
+        }
+
     }
 }
