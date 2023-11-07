@@ -31,15 +31,26 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
 
         [BindProperty]
         public double NyPris { get; set; }
+        public static int Sort {  get; set; }
 
         [BindProperty]
         public string NyDescription { get; set; }
         public List<string> NyToppingList = new List<string>();
+        public static string NyToppingString = "";
 
         public List<Items> AllItems { get; set; }
-
+        public string ListToString()
+        {
+            NyToppingString = "";
+            foreach (string top in NyToppingList)
+            {
+                NyToppingString += top == NyToppingList.First() ? top : ", " + top;
+            }
+            return NyToppingString;
+        }
         public void OnGet()
         {
+            NytPizzaNummer = _repo.NextNumber();
             AllItems = _repo.GetAllItems();
         }
 
@@ -124,6 +135,40 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
         public IActionResult OnPostNummer()
         {
             AllItems = _repo.GetAllItems();
+            return Page();
+        }
+
+        //Marco laver lort i koden kl 22
+        public IActionResult OnPostOpret()
+        {
+            AllItems = _repo.GetAllItems();
+            if (!ModelState.IsValid)
+            {
+                
+                return Page();
+            }
+            Pizza newpizza = new Pizza(NytPizzaNavn, NyPris, NyToppingList);
+            newpizza.Number = _repo.NextNumber();
+            _repo.AddItem(newpizza);
+            NyToppingString = "";
+            
+            return Page();
+        }
+        public IActionResult OnPostTilføj()
+        {
+            switch (Sort)
+            {
+                case 1: AllItems = _repo.GetAllItems(); break;
+                case 2: AllItems = _repo.SortItemsPrice(); break;
+                case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
+            }
+            if (!ModelState.IsValid)
+            {
+                
+                return Page();
+            }
+            NyToppingList.Add(NyDescription);
+            
             return Page();
         }
     }

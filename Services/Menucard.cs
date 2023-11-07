@@ -174,10 +174,15 @@ namespace BigMammaPizzaGroup.Services
             return list;
         }
 
-        //public List<Items> SortItemsPriceHigh()
-        //{
-        //    SortItemsPrice();
-        //}
+        public string GetFood2(List<Items> food)
+        {
+            string Food = "";
+            foreach (Items item in food)
+            {
+                Food += item.Name + ", ";
+            }
+            return Food;
+        }
         public void AddNumbers()
         {
             for (int i = 1; i <= Menu.Count; i++)

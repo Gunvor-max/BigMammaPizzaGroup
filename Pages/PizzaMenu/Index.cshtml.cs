@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BigMammaPizzaGroup.Model;
 using BigMammaPizzaGroup.Services;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace BigMammaPizzaGroup.Pages.Menukort
 {
@@ -16,11 +17,15 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             _repo = repo;
         }
         //property til viewet
+        public static string Mad {  get; set; }
+        public string Mad2 {  get; set; }
         public static int Sort { get; set; }
         public int NytPizzaNummer { get; set; }
         Items item { get; set; }
         public Items Tilføjet { get; set; }
         public List<Items> AllItems{ get; set; }
+        public static List<Items> Food {  get; set; } = new List<Items>();
+        public List<Items> Food2 { get; set; }
         //public string NyDescription { get; set; }
 
         public void OnGet()
@@ -44,13 +49,15 @@ namespace BigMammaPizzaGroup.Pages.Menukort
                 AllItems.Reverse();
                 Sort = 3;
             }
-           
+            Mad2 = Mad;
             return Page();
         }
+        
         public IActionResult OnPostNummer()
         {
             Sort = 1;
             AllItems = _repo.GetAllItems();
+            Mad2 = Mad;
             return Page();
         }
         public IActionResult OnPostTilføj(int nummer)
@@ -62,7 +69,10 @@ namespace BigMammaPizzaGroup.Pages.Menukort
                 case 2: AllItems = _repo.SortItemsPrice(); break;
                 case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
             }
-            Tilføjet = item;
+            Food.Add(item);
+            Mad = _repo.GetFood2(Food);
+            Mad2 = Mad;
+            Food2 = Food;
 
             return Page();
         }

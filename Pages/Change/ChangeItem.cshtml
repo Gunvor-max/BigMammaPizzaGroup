@@ -3,7 +3,7 @@
 @model BigMammaPizzaGroup.Pages.ChangeItem.ChangeItemModel
 @{
 }
-<h1>Ændre eksisterende Pizza</h1>
+<h1>Tilføj ny Pizza til PizzaMenukort</h1>
 
 <div class="row">
     <div class="col">
@@ -17,12 +17,21 @@
                 <span asp-validation-for="@Model.NytPizzaNavn" class="text-danger"></span><br />
 
 
-                <label>Pizza Pris</label><br />
+                @* <label>Pizza Pris</label><br />
                 <input class="form-control" asp-for="@Model.NyPris" /><br />
 
                 <label>Pizza Topping</label> - @Model.NyDescription<br />
                 <input class="form-control" asp-for="@Model.NyDescription" /><br />
-                <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
+                <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" /> *@
+                <label>Pizza Pris</label><br />
+                <input class="form-control" asp-for="@Model.NyPris" /><br />
+
+                <label>Pizza Topping</label>
+                <input type="submit" value="Tilføj Topping" class="btn btn-warning" asp-page-handler="Tilføj">
+                <label>@Model.ListToString()</label>
+                <input class="form-control" asp-for="@Model.NyDescription" /><br />
+
+                <input type="submit" value="Opret Ny Pizza" class="btn btn-success" asp-page-handler="Opret">
             </div>
         </form>
     </div>
