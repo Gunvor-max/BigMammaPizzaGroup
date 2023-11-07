@@ -18,7 +18,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         //property til viewet
         public int NytPizzaNummer { get; set; }
         Items item { get; set; }
-        public double Tilføjet { get; set; }
+        public Items Tilføjet { get; set; }
         public List<Items> AllItems{ get; set; }
         //public string NyDescription { get; set; }
 
@@ -43,7 +43,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         {
             Items item = _repo.SearchItem(nummer);
             AllItems = _repo.GetAllItems();
-
+            Tilføjet = item;
 
             return Page();
         }
