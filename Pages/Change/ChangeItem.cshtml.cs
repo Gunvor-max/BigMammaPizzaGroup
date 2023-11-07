@@ -5,6 +5,7 @@ using BigMammaPizzaGroup.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
+using System.Dynamic;
 
 namespace BigMammaPizzaGroup.Pages.ChangeItem
 {
@@ -36,41 +37,56 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
         public List<string> NyToppingList = new List<string>();
 
         public List<Items> AllItems { get; set; }
-        public void OnGet(int nummer)
+
+        public void OnGet()
         {
             AllItems = _repo.GetAllItems();
-            //Items item = _repo.SearchItem(nummer);
-
-
-            ////NytPizzaNummer = item.Number;
-            //NytPizzaNavn = item.Name;
-            //NyPris = item.Price;
-            //if (item is Pizza)
-            //{
-            //    Pizza p = item as Pizza;
-            //    NyDescription = p.GetToppings();
-            //}
-            //else if (item is Burger)
-            //{
-            //    Burger b = item as Burger;
-            //    NyDescription = b.GetToppings();
-            //}
-            //else if (item is Drink) 
-            //{
-            //    Drink d = item as Drink;
-            //}
-
-            //AllItems = _repo.GetAllItems();
         }
 
-        public IActionResult OnPostChange()
+        public void OnPostChangeItem(int? nummer)
+        {
+            //if (nummer == null)
+            //{
+            //    AllItems = _repo.GetAllItems();
+            //}
+            //else
+            {
+                AllItems = _repo.GetAllItems();
+                Items item = _repo.SearchItem((int)nummer);
+
+
+                //NytPizzaNummer = item.Number;
+                NytPizzaNavn = item.Name;
+                NyPris = item.Price;
+                if (item is Pizza)
+                {
+                    Pizza p = item as Pizza;
+                    NyDescription = p.GetToppings();
+                }
+                else if (item is Burger)
+                {
+                    Burger b = item as Burger;
+                    NyDescription = b.GetToppings();
+                }
+                else if (item is Drink)
+                {
+                    Drink d = item as Drink;
+                }
+
+                AllItems = _repo.GetAllItems();
+            }
+            }
+
+            public IActionResult OnPostChange()
         {
             if (true)
             {
-                if (!ModelState.IsValid)
-                {
-                    return Page();
-                }
+                AllItems = _repo.GetAllItems();
+                //if (!ModelState.IsValid)
+                //{
+                //    return Page();
+                //}
+                
                 Items item = _repo.SearchItem(NytPizzaNummer);
 
                 NyToppingList.Add(NyDescription);

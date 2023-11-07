@@ -8,7 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Pages\Index.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="Pages\Shared\images\" />
   </ItemGroup>
 
 </Project>

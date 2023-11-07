@@ -38,6 +38,7 @@ namespace BigMammaPizzaGroup.Pages.AddNewPizza
         public string NyDescription { get; set; }
         public static List<string> NyToppingList = new List<string>();
         public static string NyToppingString = "";
+        public List<Items> AllItems { get; set; }
 
         public string ListToString()
         {
@@ -51,6 +52,8 @@ namespace BigMammaPizzaGroup.Pages.AddNewPizza
         public void OnGet()
         {
             NytPizzaNummer = _repo.NextNumber();
+
+            AllItems = _repo.GetAllItems();
         }
 
 
@@ -73,6 +76,17 @@ namespace BigMammaPizzaGroup.Pages.AddNewPizza
                 return Page();
             }
             NyToppingList.Add(NyDescription);
+            return Page();
+        }
+
+        public IActionResult OnPostPris()
+        {
+            AllItems = _repo.SortItemsPrice();
+            return Page();
+        }
+        public IActionResult OnPostNummer()
+        {
+            AllItems = _repo.GetAllItems();
             return Page();
         }
     }

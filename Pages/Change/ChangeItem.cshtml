@@ -22,8 +22,6 @@
 
                 <label>Pizza Topping</label> - @Model.NyDescription<br />
                 <input class="form-control" asp-for="@Model.NyDescription" /><br />
-
-                <input type="submit" value="Ændre pizza" class="btn btn-success" asp-page-handler="Change" />
                 <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
             </div>
         </form>
@@ -60,6 +58,11 @@
                             }
                         </td>
                         <td>@p.Price Kr.</td>
+                        <form method="post">
+                        <td>
+                           <input type="submit" value="Ændre" class="btn btn-secondary" asp-page-handler="ChangeItem" asp-route-nummer="@p.Number">
+                        </td>
+                        </form>
                     </tr>
                 }
             </tbody>
