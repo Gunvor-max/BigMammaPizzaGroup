@@ -14,6 +14,8 @@ namespace BigMammaPizzaGroup.Services
         List<Items> GetAllDrinks();
         List<Items> GetAllItems();
         List<Items> GetAllPizzas();
+        Items FindLowest(List<Items> menu);
+        List<Items> SortItemsPrice();
         int NextNumber();
         //void PopulateBurgerRepository();
         //void PopulatePizzaRepository();

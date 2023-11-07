@@ -23,13 +23,22 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         {
             //AllItems = _repo.GetAllPizzas();
             //_repo.AddNumbers();
-            AllItems = _repo.GetAllItems();
-
+          
+                AllItems = _repo.GetAllItems();
+     
+            
         }
 
-        public void OnPost()
+        public IActionResult OnPostPris()
         {
+            AllItems = _repo.SortItemsPrice();
+            return Page();
         }
-
+        public IActionResult OnPostNummer()
+        {
+            AllItems = _repo.GetAllItems();
+            return Page();
+        }
+        
     }
 }

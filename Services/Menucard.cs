@@ -150,7 +150,29 @@ namespace BigMammaPizzaGroup.Services
             }
             return menu;
         }
-
+        public Items FindLowest(List<Items> menu)
+        {
+            Items Lowest = menu[0];
+            for(int i = 0; i+1 < menu.Count; i++)
+            {
+                if (Lowest.Price > menu[i + 1].Price)
+                {
+                    Lowest = menu[i + 1];
+                }
+            }
+            return Lowest;
+        }
+        public List<Items> SortItemsPrice()
+        {
+            List<Items> menu = GetAllItems();
+            List<Items> list = new List<Items>();
+            foreach(Items item in GetAllItems())
+            {
+                list.Add(FindLowest(menu));
+                menu.Remove(FindLowest(menu));
+            }
+            return list;
+        }
         public void AddNumbers()
         {
             for (int i = 1; i <= Menu.Count; i++)
@@ -168,20 +190,21 @@ namespace BigMammaPizzaGroup.Services
             return Menu.Count + 1;
         }
 
-        //public void CheckMenu()
-        //{
-        //    for(int i = 1; i <= Menu.Count;)
-        //    {
-        //        if (!Menu.ContainsKey(i))
-        //        {
-        //             Menu.Add(i, Menu[i + 1]);
-        //        }
-        //        else
-        //        {
-        //            i++;
-        //        }
-        //    }
-        //}
+        public void CheckMenu()
+        {
+            for (int i = 1; i <= Menu.Count;)
+            {
+                if (!Menu.ContainsKey(i))
+                {
+                    Menu.Add(i, Menu[i + 1]);
+                    Menu.Remove(i+1);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
         public override string ToString()
         {
             string Output = string.Join(", ", Menu.Values);
