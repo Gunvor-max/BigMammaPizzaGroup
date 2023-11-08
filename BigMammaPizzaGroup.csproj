@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Pages\Index.css" />
+    <Content Include="Pages\images\img.png" />
+    <Content Include="Pages\images\vit-ch-Oxb84ENcFfU-unsplash.jpg" />
   </ItemGroup>
 
   <ItemGroup>

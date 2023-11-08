@@ -31,7 +31,7 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
 
         [BindProperty]
         public double NyPris { get; set; }
-        public static int Sort {  get; set; }
+        public static int Sort { get; set; } = 1;
 
         [BindProperty]
         public string NyDescription { get; set; }
@@ -39,6 +39,7 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
         public static string NyToppingString = "";
 
         public List<Items> AllItems { get; set; }
+        public Dictionary<int, Items> Menu {  get; set; }
         public string ListToString()
         {
             NyToppingString = "";
@@ -56,17 +57,11 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
 
         public void OnPostChangeItem(int? nummer)
         {
-            //if (nummer == null)
-            //{
-            //    AllItems = _repo.GetAllItems();
-            //}
-            //else
-            {
                 AllItems = _repo.GetAllItems();
                 Items item = _repo.SearchItem((int)nummer);
 
 
-                //NytPizzaNummer = item.Number;
+                NytPizzaNummer = item.Number;
                 NytPizzaNavn = item.Name;
                 NyPris = item.Price;
                 if (item is Pizza)
@@ -85,7 +80,6 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
                 }
 
                 AllItems = _repo.GetAllItems();
-            }
             }
 
             public IActionResult OnPostChange()
@@ -169,6 +163,23 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
             }
             NyToppingList.Add(NyDescription);
             
+            return Page();
+        }
+
+        public IActionResult OnPostDelete(int? item) 
+        {
+            switch (Sort)
+            {
+                case 1: AllItems = _repo.GetAllItems(); break;
+                case 2: AllItems = _repo.SortItemsPrice(); break;
+                case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
+            }
+            if (Menu.ContainsKey((int)item))
+            {
+                Items slettetpizza = Menu[(int)item];
+                Menu.Remove((int)item);
+            }
+
             return Page();
         }
     }

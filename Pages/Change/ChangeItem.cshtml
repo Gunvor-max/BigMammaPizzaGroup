@@ -41,6 +41,7 @@
             <input type="submit" value="nummer" asp-page-handler="Nummer" />
             <input type="submit" value="pris" asp-page-handler="Pris" />
         </form>
+        <form method="post">
         <table class="table-hover">
             <thead>
                 <tr>
@@ -67,15 +68,17 @@
                             }
                         </td>
                         <td>@p.Price Kr.</td>
-                        <form method="post">
                         <td>
                            <input type="submit" value="Ændre" class="btn btn-secondary" asp-page-handler="ChangeItem" asp-route-nummer="@p.Number">
                         </td>
-                        </form>
-                    </tr>
+                            <td>
+                                <input type="submit" value="Slet" class="btn btn-danger" asp-page-handler="DeleteItem" asp-route-item="@p.Number">
+                            </td>
+                    </tr>  
                 }
             </tbody>
         </table>
+        </form>
     </div>
 </div>
 
