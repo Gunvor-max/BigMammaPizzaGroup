@@ -33,7 +33,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             //AllItems = _repo.GetAllPizzas();
             //_repo.AddNumbers();
             Sort = 1;
-                AllItems = _repo.GetAllItems();
+            AllItems = _repo.SortItemsNumber();
         }
 
         public IActionResult OnPostPris()
@@ -56,7 +56,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         public IActionResult OnPostNummer()
         {
             Sort = 1;
-            AllItems = _repo.GetAllItems();
+            AllItems = _repo.SortItemsNumber();
             Mad2 = Mad;
             return Page();
         }
@@ -65,14 +65,20 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             Items item = _repo.SearchItem(nummer);
             switch (Sort)
             {
-                case 1: AllItems = _repo.GetAllItems(); break;
+                case 1: AllItems = _repo.SortItemsNumber(); break;
                 case 2: AllItems = _repo.SortItemsPrice(); break;
                 case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
+            }
+            
+            if (Food.Count==0)
+            {
+                Customer customer = new Customer();
+                Order order = new Order(customer,Food);
             }
             Food.Add(item);
             Mad = _repo.GetFood2(Food);
             Mad2 = Mad;
-            Food2 = Food;
+            
 
             return Page();
         }
@@ -80,6 +86,12 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         public IActionResult OnPostDelete()
         {
             Mad2 = "";
+            switch (Sort)
+            {
+                case 1: AllItems = _repo.SortItemsNumber(); break;
+                case 2: AllItems = _repo.SortItemsPrice(); break;
+                case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
+            }
             return Page();
         }
     }

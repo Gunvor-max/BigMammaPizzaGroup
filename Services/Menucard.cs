@@ -150,7 +150,7 @@ namespace BigMammaPizzaGroup.Services
             }
             return menu;
         }
-        public Items FindLowest(List<Items> menu)
+        public Items FindLowestPrice(List<Items> menu)
         {
             Items Lowest = menu[0];
             for(int i = 0; i+1 < menu.Count; i++)
@@ -162,14 +162,39 @@ namespace BigMammaPizzaGroup.Services
             }
             return Lowest;
         }
+
         public List<Items> SortItemsPrice()
         {
             List<Items> menu = GetAllItems();
             List<Items> list = new List<Items>();
             foreach(Items item in GetAllItems())
             {
-                list.Add(FindLowest(menu));
-                menu.Remove(FindLowest(menu));
+                list.Add(FindLowestPrice(menu));
+                menu.Remove(FindLowestPrice(menu));
+            }
+            return list;
+        }
+
+        public Items FindLowestNumber(List<Items> menu)
+        {
+            Items Lowest = menu[0];
+            for (int i = 0; i + 1 < menu.Count; i++)
+            {
+                if (Lowest.Number > menu[i + 1].Number)
+                {
+                    Lowest = menu[i + 1];
+                }
+            }
+            return Lowest;
+        }
+        public List<Items> SortItemsNumber()
+        {
+            List<Items> menu = GetAllItems();
+            List<Items> list = new List<Items>();
+            foreach (Items item in GetAllItems())
+            {
+                list.Add(FindLowestNumber(menu));
+                menu.Remove(FindLowestNumber(menu));
             }
             return list;
         }

@@ -22,11 +22,15 @@ namespace BigMammaPizzaGroup.Services
         }
         public Items AddItem(Items item)
         {
-            _menu.Add(item.Number, item);
-            WriteToJson();
-            return item;
+            if (!Menu.ContainsKey(item.Number))
+            {
+                _menu.Add(item.Number, item);
+                WriteToJson();
+                return item;
+            }
+            return null;
+            
         }
-
 
         public Items DeleteItem(int item)
         {
@@ -103,7 +107,7 @@ namespace BigMammaPizzaGroup.Services
             }
             return menu;
         }
-        public Items FindLowest(List<Items> menu)
+        public Items FindLowestPrice(List<Items> menu)
         {
             Items Lowest = menu[0];
             for (int i = 0; i + 1 < menu.Count; i++)
@@ -121,8 +125,31 @@ namespace BigMammaPizzaGroup.Services
             List<Items> list = new List<Items>();
             foreach (Items item in GetAllItems())
             {
-                list.Add(FindLowest(menu));
-                menu.Remove(FindLowest(menu));
+                list.Add(FindLowestPrice(menu));
+                menu.Remove(FindLowestPrice(menu));
+            }
+            return list;
+        }
+        public Items FindLowestNumber(List<Items> menu)
+        {
+            Items Lowest = menu[0];
+            for (int i = 0; i + 1 < menu.Count; i++)
+            {
+                if (Lowest.Number > menu[i + 1].Number)
+                {
+                    Lowest = menu[i + 1];
+                }
+            }
+            return Lowest;
+        }
+        public List<Items> SortItemsNumber()
+        {
+            List<Items> menu = GetAllItems();
+            List<Items> list = new List<Items>();
+            foreach (Items item in GetAllItems())
+            {
+                list.Add(FindLowestNumber(menu));
+                menu.Remove(FindLowestNumber(menu));
             }
             return list;
         }
@@ -149,15 +176,16 @@ namespace BigMammaPizzaGroup.Services
 
         public int NextNumber()
         {
-            for (int i = 1; i < Menu.Count; i++)
+            int i = 1;
+            for (; i <= Menu.Count; i++)
             {
                 if (!Menu.ContainsKey(i))
                 {
                     return i;
                 }
             }
+           
             return Menu.Count + 1;
-
         }
 
         //public void CheckMenu()
@@ -199,6 +227,7 @@ namespace BigMammaPizzaGroup.Services
             }
 
         }
+        
 
         private void WriteToJson()
         {

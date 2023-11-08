@@ -41,7 +41,7 @@
             <input type="submit" value="nummer" asp-page-handler="Nummer" />
             <input type="submit" value="pris" asp-page-handler="Pris" />
         </form>
-        <form method="post">
+        
         <table class="table-hover">
             <thead>
                 <tr>
@@ -52,7 +52,7 @@
                 </tr>
             </thead>
             <tbody>
-
+                <form method="post">
                 @foreach (Items p in Model.AllItems)
                 {
                     <tr>
@@ -76,9 +76,10 @@
                             </td>
                     </tr>  
                 }
+                </form>
             </tbody>
         </table>
-        </form>
+      
     </div>
 </div>
 
