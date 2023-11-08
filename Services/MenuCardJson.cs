@@ -8,22 +8,29 @@ namespace BigMammaPizzaGroup.Services
     {
         //instance field 
         public Dictionary<int, Items> _menu;
+        public List<Items> _items;
 
         //property
         public Dictionary<int, Items> Menu
         { get { return _menu; }
         set { _menu = value; }
         }
+        public List<Items> Items
+        { get { return _items; } }
 
         // konstruktør
         public MenuCardJson()
         {
-            _menu = ReadFromJson(); 
+            _menu = ReadFromJsonDIC(); 
         }
+        
+        //peters kode
+        List<Items> data = new List<Items>();
+
         public Items AddItem(Items item)
         {
             _menu.Add(item.Number, item);
-            WriteToJson();
+            WriteToJson(data);
             return item;
         }
 
@@ -34,7 +41,7 @@ namespace BigMammaPizzaGroup.Services
             {
                 Items slettetpizza = Menu[item];
                 Menu.Remove(item);
-                WriteToJson();
+                WriteToJson(data);
                 return slettetpizza;
             }
             else
@@ -166,39 +173,205 @@ namespace BigMammaPizzaGroup.Services
         //        }
         //    }
         //}
+
         public override string ToString()
         {
             string Output = string.Join(", ", _menu.Values);
             return $"{{{nameof(Menu)}={Output}}}";
         }
 
-      //Helping methods for writing and reading to json file
+        //indsætter ny jsonfile fra peter
+
+        private Dictionary<int, Items> ReadFromJsonDIC()
+        {
+            Dictionary<int, Items> menu = new Dictionary<int, Items>();
+            for (int i = 0; i < ReadFromJsonLIST().Count;) 
+            {
+                menu.Add(i+1, ReadFromJsonLIST()[i]);
+            }
+            return menu;
+        }
+
+
+        //Helping methods for writing and reading to json file
 
         private const string FILENAME = "MenuCard.json";
+        private const string FILENAMEITEMS = "Items.json";
+        private const string FILENAMEPIZZA = "Pizza.json";
+        private const string FILENAMEBURGER = "Burger.json";
+        private const string FILENAMEDRINK = "Drink.json";
 
-        private Dictionary<int, Items> ReadFromJson()
+        private List<Items> ReadFromJsonLIST()
         {
-            if (File.Exists(FILENAME))
+            //ITEMS
+            List<Items> data = new List<Items>();
+
+            using (var reader = File.OpenText(FILENAMEITEMS))
             {
-                StreamReader reader = File.OpenText(FILENAME);
-                Dictionary<int, Items> katalog = JsonSerializer.Deserialize<Dictionary<int, Items>>(reader.ReadToEnd());
-                reader.Close();
-                return katalog;
+                string json = reader.ReadToEnd();
+                data = JsonSerializer.Deserialize<List<Items>>(json);
             }
-            else
+
+            //PIZZA
+            using (var reader = File.OpenText(FILENAMEPIZZA))
             {
-                return new Dictionary<int, Items>();
+                List<Pizza> datasub;
+                string json = reader.ReadToEnd();
+                datasub = JsonSerializer.Deserialize<List<Pizza>>(json);
+
+                data.AddRange(datasub);
+            }
+
+            //BURGER
+            using (var reader = File.OpenText(FILENAMEBURGER))
+            {
+                List<Burger> dataend;
+                string json = reader.ReadToEnd();
+                dataend = JsonSerializer.Deserialize<List<Burger>>(json);
+
+                data.AddRange(dataend);
+            }
+
+            //DRIKKEVARER
+            using (var reader = File.OpenText(FILENAMEDRINK))
+            {
+                List<Drink> dataend;
+                string json = reader.ReadToEnd();
+                dataend = JsonSerializer.Deserialize<List<Drink>>(json);
+
+                data.AddRange(dataend);
+            }
+
+
+
+            return data;
+
+        }
+
+        public void WriteData(List<Items> data) 
+        {
+            List<Items> list1 = new List<Items>();
+            List<Pizza> list2 = new List<Pizza>();
+            List<Burger> list3 = new List<Burger>();
+            List<Drink> list4 = new List<Drink>();
+
+            foreach (var item in data) 
+            {
+                if (item is Pizza) 
+                {
+                    list2.Add((Pizza)item);
+                }
+                else if (item is Burger)
+                {
+                    list3.Add((Burger)item);
+                }
+                else if (item is Drink) 
+                {
+                    list4.Add((Drink)item);
+                } 
+                else
+                {
+                    list1.Add(item);
+                }
+
+
+            }
+
+            using (FileStream fs = new FileStream(FILENAMEITEMS, FileMode.Create))
+            {
+                Utf8JsonWriter writer = new Utf8JsonWriter(fs);
+                JsonSerializer.Serialize(writer, list1);
+            }
+            using (FileStream fs = new FileStream(FILENAMEPIZZA, FileMode.Create))
+            {
+                Utf8JsonWriter writer = new Utf8JsonWriter(fs);
+                JsonSerializer.Serialize(writer, list2);
+            }
+            using (FileStream fs = new FileStream(FILENAMEBURGER, FileMode.Create))
+            {
+                Utf8JsonWriter writer = new Utf8JsonWriter(fs);
+                JsonSerializer.Serialize(writer, list3);
+            }
+            using (FileStream fs = new FileStream(FILENAMEDRINK, FileMode.Create))
+            {
+                Utf8JsonWriter writer = new Utf8JsonWriter(fs);
+                JsonSerializer.Serialize(writer, list4);
             }
 
         }
 
-        private void WriteToJson()
+        public void WriteToJson(List<Items> data)
         {
-            FileStream fs = new FileStream(FILENAME, FileMode.Create);
-            Utf8JsonWriter writer = new Utf8JsonWriter(fs);
-            JsonSerializer.Serialize(writer, _menu);
-            fs.Close();
+            using (FileStream fs = new FileStream(FILENAME, FileMode.Create))
+            {
+                Utf8JsonWriter writer = new Utf8JsonWriter(fs);
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+                StreamWriter sw = new StreamWriter(fs);
+                sw.WriteLine(json);
+                sw.Close();
+            }
         }
+
+        public List<Pizza> ReadDataAllPizza()
+        {
+            List<Pizza> data = new List<Pizza>();
+
+            using (var reader = File.OpenText(FILENAME))
+            {
+                string json = reader.ReadToEnd();
+                data = JsonSerializer.Deserialize<List<Pizza>>(json);
+            }
+            return data;
+        }
+
+        public List<Burger> ReadDataAllBurger()
+        {
+            List<Burger> data = new List<Burger>();
+
+            using (var reader = File.OpenText(FILENAME))
+            {
+                string json = reader.ReadToEnd();
+                data = JsonSerializer.Deserialize<List<Burger>>(json);
+            }
+            return data;
+        }
+
+        public List<Drink> ReadDataAllDrinks()
+        {
+            List<Drink> data = new List<Drink>();
+
+            using (var reader = File.OpenText(FILENAME))
+            {
+                string json = reader.ReadToEnd();
+                data = JsonSerializer.Deserialize<List<Drink>>(json);
+            }
+            return data;
+        }
+
+        //    private Dictionary<int, Items> ReadFromJson()
+        //{
+
+        //    if (File.Exists(FILENAME))
+        //    {
+        //        StreamReader reader = File.OpenText(FILENAME);
+        //        Dictionary<int, Items> katalog = JsonSerializer.Deserialize<Dictionary<int, Items>>(reader.ReadToEnd());
+        //        reader.Close();
+        //        return katalog;
+        //    }
+        //    else
+        //    {
+        //        return new Dictionary<int, Items>();
+        //    }
+
+        //}
+
+        //private void WriteToJson()
+        //{
+        //    FileStream fs = new FileStream(FILENAME, FileMode.Create);
+        //    Utf8JsonWriter writer = new Utf8JsonWriter(fs);
+        //    JsonSerializer.Serialize(writer, _menu);
+        //    fs.Close();
+        //}
 
     }
 }
