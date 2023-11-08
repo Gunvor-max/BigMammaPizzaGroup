@@ -77,5 +77,10 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             return Page();
         }
 
+        public IActionResult OnPostDelete()
+        {
+            Mad2 = "";
+            return Page();
+        }
     }
 }
