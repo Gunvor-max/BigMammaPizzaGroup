@@ -78,6 +78,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             Food.Add(item);
             Mad = _repo.GetFood2(Food);
             Mad2 = Mad;
+            Food2 = Food;
             
 
             return Page();

@@ -32,7 +32,6 @@ Sorter efter
                 <td>@p.Number</td>
                 <td>@p.Name</td>
 
-
                 <td>@if(p is Pizza)
                     { Pizza pizza = p as Pizza;
                         pizza.GetToppings();
@@ -50,12 +49,13 @@ Sorter efter
     </div>
     <div class="col">
         <div class="text-box">
-            
-                    <span>@Model.Mad2</span>
+                    @* @foreach(Items mad in Model.Food2)
+                    }
+                    <td>@Model.Mad2</td>
                     <form method="post">
-                    <button type="button" class="btn btn-danger" asp-page-handler="Delete">X</button>
+                    <input type="submit" class="btn btn-secondary" value="@Model.Mad2" asp-page-handler="Delete">
                     </form>
-            
+            } *@
         </div>
     </div>
 </div>
