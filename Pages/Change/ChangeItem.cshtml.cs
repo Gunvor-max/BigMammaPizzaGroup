@@ -166,19 +166,17 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
             return Page();
         }
 
-        public IActionResult OnPostDelete(int? item) 
+        public IActionResult OnPostDeleteItem(int? item) 
         {
+            AllItems = _repo.GetAllItems();
+
             switch (Sort)
             {
                 case 1: AllItems = _repo.GetAllItems(); break;
                 case 2: AllItems = _repo.SortItemsPrice(); break;
                 case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
             }
-            if (Menu.ContainsKey((int)item))
-            {
-                Items slettetpizza = Menu[(int)item];
-                Menu.Remove((int)item);
-            }
+            _repo.DeleteItem((int)item);
 
             return Page();
         }
