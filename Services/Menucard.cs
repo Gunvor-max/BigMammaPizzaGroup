@@ -197,7 +197,15 @@ namespace BigMammaPizzaGroup.Services
 
         public int NextNumber()
         {
+            for (int i = 1; i < Menu.Count; i++)
+            {
+                if (!Menu.ContainsKey(i))
+                {
+                    return i;
+                }
+            }
             return Menu.Count + 1;
+
         }
 
         public void CheckMenu()
