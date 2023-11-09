@@ -7,40 +7,45 @@ namespace BigMammaPizzaGroup.Services
     public class Order
     {
         private Customer Customer {  get; set; }
-        private List<Items> Food = new List<Items>();
+        private List<Items> Pizzas = new List<Items>();
+        private List<Burger> Burgers = new List<Burger>();
+        private List<Drink> Drinks  = new List<Drink>();
         public bool TakeAway {  get; set; }
         public Order()
         {
             
         }
-        public Order(Customer customer, List<Items> food)
+        public Order(Customer customer, List<Items> pizza, List<Burger> burger, List<Drink> drink)
         {
             Customer = customer;
-            Food = food;
+            Pizzas = pizza;
+            Burgers = burger;
+            Drinks = drink;
+
         }
 
-        public double GetPrice()
+        public double GetPricePizza()
         {
             double price = 0;
-            foreach (Items menuitem in Food)
+            foreach (Items menuitem in Pizzas)
             {
                 price += menuitem.Price*1.25;
             }
-            return TakeAway ? price + 40: price;
+            return price;
         }
-        public string GetFood()
+        public string GetPizzas()
         {
             string food = "";
-                foreach(Items item in Food)
+                foreach(Items item in Pizzas)
             {
-                food += item == Food[Food.Count-1] ? item : item + ", ";
+                food += item == Pizzas[Pizzas.Count-1] ? item : item + ", ";
             }
             return food;
         }
         
         public override string ToString()
         {
-            return $"{Customer}, {GetFood()}";
+            return $"{Customer}";
          
         }
     }

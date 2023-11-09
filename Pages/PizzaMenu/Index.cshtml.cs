@@ -24,8 +24,10 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         Items item { get; set; }
         public Items Tilføjet { get; set; }
         public List<Items> AllItems{ get; set; }
-        public static List<Items> Food {  get; set; } = new List<Items>();
-        public List<Items> Food2 { get; set; }
+        public static List<Items> PizzasS {  get; set; } = new List<Items>();
+        public static List<Burger> BurgersS { get; set; } = new List<Burger>();
+        public static List<Drink> DrinksS { get; set; } = new List<Drink>();
+        public List<Items> PizzasN { get; set; }
         //public string NyDescription { get; set; }
 
         public void OnGet()
@@ -34,7 +36,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             //_repo.AddNumbers();
             Sort = 1;
             AllItems = _repo.SortItemsNumber();
-            Food2 = Food;
+            PizzasN = PizzasS;
 
         }
 
@@ -52,7 +54,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
                 Sort = 3;
             }
             Mad2 = Mad;
-            Food2 = Food;
+            PizzasN = PizzasS;
             return Page();
         }
         
@@ -61,7 +63,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             Sort = 1;
             AllItems = _repo.SortItemsNumber();
             Mad2 = Mad;
-            Food2 = Food;
+            PizzasN = PizzasS;
             return Page();
         }
         public IActionResult OnPostTilføj(int nummer)
@@ -74,15 +76,15 @@ namespace BigMammaPizzaGroup.Pages.Menukort
                 case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
             }
             
-            if (Food.Count==0)
+            if (PizzasS.Count==0)
             {
                 Customer customer = new Customer();
-                Order order = new Order(customer,Food);
+                Order order = new Order(customer, PizzasS, BurgersS, DrinksS);
             }
-            Food.Add(item);
+            PizzasS.Add(item);
             Mad = item.Name;
             Mad2 = Mad;
-            Food2 = Food;
+            PizzasN = PizzasS;
             
 
             return Page();
@@ -91,8 +93,8 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         public IActionResult OnPostDelete()
         {
             Mad = "";
-            Food.Clear();
-            Food2 = Food;
+            PizzasS.Clear();
+            PizzasN = PizzasS;
             switch (Sort)
             {
                 case 1: AllItems = _repo.SortItemsNumber(); break;
