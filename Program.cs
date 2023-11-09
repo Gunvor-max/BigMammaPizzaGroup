@@ -23,7 +23,8 @@ internal class Program
 
         //Indsætter pizzarepository
         builder.Services.AddSingleton<IMenucard>(new MenuCardJson());
-        
+        builder.Services.AddSingleton(new BurgerRepository());
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

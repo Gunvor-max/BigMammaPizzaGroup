@@ -5,6 +5,7 @@
         //properties
         public string Name { get; set; }
         public double Price { get; set; }
+        public int Number { get; set; }
         public BunType Bun { get; set; }
         public List <string> Description = new List <string> ();
             
@@ -16,8 +17,9 @@
             }
 
         //Constructor
-        public Burger(string name, double price, BunType type, List<string> description)
+        public Burger(int number, string name, double price, BunType type, List<string> description)
         {
+            Number = number;
             Name = name;
             Price = price;
             Bun = type;
@@ -39,10 +41,11 @@
             }
             return topping;
         }
+
         //Tostring
         public override string ToString()
         {
-            return $"{{{nameof(Name)}={Name}, {nameof(Price)}={Price.ToString()}, {nameof(Bun)}={Bun.ToString()}}}";
+            return $"{{{nameof(Name)}={Name}, {nameof(Price)}={Price.ToString()}, {nameof(Number)}={Number.ToString()}, {nameof(Bun)}={Bun.ToString()}}}";
         }
 
     }

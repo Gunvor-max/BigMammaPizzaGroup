@@ -6,23 +6,28 @@
     ViewData["Title"] = "Pizza Menu";
 }
 <link rel="index" type="text/css" href="/pages/index.css">
-<h1 class="jumbotron">Big Mamma Pizza a la cart</h1>
+<h1 class="jumbotron">Pizza</h1>
 
 <div class="row">
     <div class="col">
-<form method="post">
+
 Sorter efter
-<input type="submit" value="nummer" asp-page-handler="Nummer" />
-<input type="submit" value="pris" asp-page-handler="Pris" />
-</form>
+@* <button type="submit" value="nummer" asp-page-handler="Nummer" />
+<button type="submit" value="pris" asp-page-handler="Pris" /> *@
 <table class="table-hover">
     <thead>
+                <form method="post">
         <tr>
-            <th>Nummer</th>
-            <th>Navn</th>
+                    <th><input type="submit" value="nummer" asp-page-handler="Nummer" >
+                     </th>
+                    <th>Navn</th>
             <th>Beskrivelse</th>
-            <th>pris</th>
+                    <th>
+                        <input type="submit" value="pris" asp-page-handler="Pris">
+                    </th>
+
         </tr>
+                </form>
     </thead>
     <tbody>
         
