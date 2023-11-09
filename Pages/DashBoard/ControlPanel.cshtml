@@ -12,19 +12,19 @@
         </thead>
         <form method="post">
         <tbody>
-            <tr>
+           @*  <tr>
                 <td>
                     <input type="submit" value="Tilføj ny pizza" class="btn btn-secondary" asp-page-handler="AddNewPizza">
                 </td>
 
 
-            </tr>
+            </tr> *@
             <tr>
-                <td><input type="submit" value="Ændre en eksisterende pizza" class="btn btn-secondary" asp-page-handler="ChangePizza"></td>
+                <td><input type="submit" value="Administrer pizzaer" class="btn btn-primary" asp-page-handler="ChangePizza"></td>
             </tr>
-            <tr>
+            @* <tr>
                 <td><input type="submit" value="slet en eksisterende pizza" class="btn btn-secondary" asp-page-handler="DeletePizza"></td>
-            </tr>
+            </tr> *@
         </tbody>
         </form>
     </table>

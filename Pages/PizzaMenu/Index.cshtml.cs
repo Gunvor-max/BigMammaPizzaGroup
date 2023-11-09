@@ -34,6 +34,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             //_repo.AddNumbers();
             Sort = 1;
             AllItems = _repo.SortItemsNumber();
+            Food2 = new List<Items>();
         }
 
         public IActionResult OnPostPris()
@@ -76,7 +77,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
                 Order order = new Order(customer,Food);
             }
             Food.Add(item);
-            Mad = _repo.GetFood2(Food);
+            Mad = item.Name;
             Mad2 = Mad;
             Food2 = Food;
             
@@ -86,7 +87,8 @@ namespace BigMammaPizzaGroup.Pages.Menukort
 
         public IActionResult OnPostDelete()
         {
-            Mad2 = "";
+            Mad = "";
+            Food.Clear();
             switch (Sort)
             {
                 case 1: AllItems = _repo.SortItemsNumber(); break;
