@@ -11,7 +11,6 @@
 <table class="table-hover">
     <thead>
         <tr>
-            <th>nummer</th>
             <th>Navn</th>
             <th>Buntype</th>
             <th>Beskrivelse</th>
@@ -23,9 +22,8 @@
         @foreach (Burger b in Model.BurgerMenukort)
         {
             <tr>
-                <td>@b.Number</td>
                 <td>@b.Name</td>
-                <th>@b.Bun</th>
+                <td>@b.Bun</td>
                 <td>@b.GetToppings()</td>
                 <td>@b.Price Kr.</td>
             </tr>

@@ -69,15 +69,15 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
                     Pizza p = item as Pizza;
                     NyDescription = p.GetToppings();
                 }
-                else if (item is Burger)
-                {
-                    Burger b = item as Burger;
-                    NyDescription = b.GetToppings();
-                }
-                else if (item is Drink)
-                {
-                    Drink d = item as Drink;
-                }
+                //else if (item is Burger)
+                //{
+                //    Burger b = item as Burger;
+                //    NyDescription = b.GetToppings();
+                //}
+                //else if (item is Drink)
+                //{
+                //    Drink d = item as Drink;
+                //}
 
                 AllItems = _repo.SortItemsNumber();
             }

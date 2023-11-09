@@ -1,8 +1,10 @@
 ﻿namespace BigMammaPizzaGroup.Model
 {
-    public class Burger:Items
+    public class Burger
     {
         //properties
+        public string Name { get; set; }
+        public double Price { get; set; }
         public BunType Bun { get; set; }
         public List <string> Description = new List <string> ();
             
@@ -14,10 +16,13 @@
             }
 
         //Constructor
-        public Burger(string name, double price, BunType type, List<string> description):base(name, price)
+        public Burger(string name, double price, BunType type, List<string> description)
         {
+            Name = name;
+            Price = price;
             Bun = type;
             Description = description; 
+
         }
         public string AddTopping(string topping)
         {
@@ -34,15 +39,11 @@
             }
             return topping;
         }
-
         //Tostring
         public override string ToString()
         {
-            return $"{{{nameof(Number)}={Number.ToString()}, {nameof(Name)}={Name}, {nameof(Bun)}={Bun.ToString()}, {nameof(Price)}={Price.ToString()}, {nameof(GetToppings)}={GetToppings()}}}";
+            return $"{{{nameof(Name)}={Name}, {nameof(Price)}={Price.ToString()}, {nameof(Bun)}={Bun.ToString()}}}";
         }
-
-
-
 
     }
         public enum BunType { Fuldkorn, Portobello, Ciabatta, Brioche }

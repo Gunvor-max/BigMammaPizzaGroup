@@ -1,9 +1,10 @@
 ﻿namespace BigMammaPizzaGroup.Model
 {
-    public class Drink:Items
+    public class Drink
     {
         //properties
-        
+        public string Name { get; set; }
+        public double Price { get; set; }
         public string Size { get; set; }
 
         
@@ -12,15 +13,17 @@
         {
             Size = "";
         }
-        public Drink(string name, double price, string size):base(name, price)
+        public Drink(string name, double price, string size)
         {
             Size = size;
         }
 
         public override string ToString()
         {
-            return $"{{{nameof(Name)}={Name}, {nameof(Size)}={Size}, {nameof(Price)}={Price.ToString()}}}";
+            return $"{{{nameof(Name)}={Name}, {nameof(Price)}={Price.ToString()}, {nameof(Size)}={Size}}}";
         }
+        //tostring 
+
     }
 }
 
