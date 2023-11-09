@@ -27,11 +27,15 @@
                 <input class="form-control" asp-for="@Model.NyPris" /><br />
 
                 <label>Pizza Topping</label>
-                @* <input type="submit" value="Tilføj Topping" class="btn btn-secondary" asp-page-handler="Tilføj"> *@
-                <label>@Model.ListToString()</label>
                 <input class="form-control" asp-for="@Model.NyDescription" /><br />
-
-                <input type="submit" value="Opret Ny Pizza" class="btn btn-success" asp-page-handler="Opret">
+                @if (@Model.Button)
+                {
+                    <input type="submit" value="Gem ændringer" class="btn btn-success" asp-page-handler="Ændre">
+                }
+                else
+                {
+                    <input type="submit" value="Opret Ny Pizza" class="btn btn-success" asp-route-nummer="@Model.NytPizzaNummer" asp-page-handler="Opret">
+                }
                 <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
             </div>
         </form>
@@ -39,8 +43,8 @@
     <div class="col">
         <form method="post">
             Sorter efter
-            <input type="submit" value="nummer" class="btn btn-info" asp-page-handler="Nummer" />
-            <input type="submit" value="pris" class="btn btn-info" asp-page-handler="Pris" />
+            <input type="submit" value="nummer" class="btn btn-info" asp-page-handler="Nummer"/>
+            <input type="submit" value="pris" class="btn btn-info" asp-page-handler="Pris"/>
         </form>
         
         <table class="table-hover">
@@ -59,15 +63,7 @@
                     <tr>
                         <td>@p.Number</td>
                         <td>@p.Name</td>
-
-
-                        <td>
-                            @if (p is Pizza)
-                            {
-                                Pizza pizza = p as Pizza;
-                                pizza.GetToppings();
-                            }
-                        </td>
+                        <td>@p.Description</td>
                         <td>@p.Price Kr.</td>
                         <td>
                            <input type="submit" value="Ændre" class="btn btn-secondary" asp-page-handler="ChangeItem" asp-route-nummer="@p.Number">

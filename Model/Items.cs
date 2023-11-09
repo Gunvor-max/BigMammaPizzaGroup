@@ -10,16 +10,19 @@ namespace BigMammaPizzaGroup.Model
         public string Name { get; set; }
         public int Number { get; set; }
         public double Price { get; set; }
+        public string Description { get; set; }
 
         public Items()
         {
             Name = "";
             Price = 0;
+            Description = "";
         }
         public Items(string name, double price)
         {
             Price = price;
             Name = name;
+            Description = "";
         }
 
         //tostring 

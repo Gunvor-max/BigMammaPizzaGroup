@@ -32,11 +32,7 @@ Sorter efter
                 <td>@p.Number</td>
                 <td>@p.Name</td>
 
-                <td>@if(p is Pizza)
-                    { Pizza pizza = p as Pizza;
-                        pizza.GetToppings();
-                    }
-                    </td>
+                <td>@p.Description</td>
                 <td>@p.Price Kr.</td>
                 <form method="post">
                         <td><button class="btn btn-success" type="submit" value="Tilføj til kurv" asp-page-handler="Tilføj" asp-route-nummer="@p.Number">
@@ -73,7 +69,9 @@ Sorter efter
                     
             @foreach (Items p in Model.PizzasN)
             {
-                    <button class="btn btn-success">@p.Name</button>
+                <form method="post">
+                    <button class="btn btn-success" asp-route-nummer="@p.Number" asp-page-handler="DeleteOne">@p.Number @p.Name</button>
+                    </form>
             }
         </div>
         <div class="col">
