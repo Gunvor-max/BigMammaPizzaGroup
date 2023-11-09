@@ -34,7 +34,8 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             //_repo.AddNumbers();
             Sort = 1;
             AllItems = _repo.SortItemsNumber();
-            Food2 = new List<Items>();
+            Food2 = Food;
+
         }
 
         public IActionResult OnPostPris()
@@ -51,6 +52,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
                 Sort = 3;
             }
             Mad2 = Mad;
+            Food2 = Food;
             return Page();
         }
         
@@ -59,6 +61,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             Sort = 1;
             AllItems = _repo.SortItemsNumber();
             Mad2 = Mad;
+            Food2 = Food;
             return Page();
         }
         public IActionResult OnPostTilføj(int nummer)
@@ -89,6 +92,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         {
             Mad = "";
             Food.Clear();
+            Food2 = Food;
             switch (Sort)
             {
                 case 1: AllItems = _repo.SortItemsNumber(); break;
