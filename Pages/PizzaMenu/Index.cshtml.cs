@@ -89,7 +89,19 @@ namespace BigMammaPizzaGroup.Pages.Menukort
 
             return Page();
         }
-
+        public IActionResult OnPostDeleteOne(int nummer)
+        {
+            
+            PizzasS.Remove(_repo.SearchItem(nummer));
+            PizzasN = PizzasS;
+            switch (Sort)
+            {
+                case 1: AllItems = _repo.SortItemsNumber(); break;
+                case 2: AllItems = _repo.SortItemsPrice(); break;
+                case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
+            }
+            return Page();
+        }
         public IActionResult OnPostDelete()
         {
             Mad = "";
