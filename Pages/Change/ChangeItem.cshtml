@@ -3,8 +3,14 @@
 @model BigMammaPizzaGroup.Pages.ChangeItem.ChangeItemModel
 @{
 }
-<h1>Administrer Pizzaer</h1>
-
+@if (@Model.Button)
+{
+    <h1>Ændre Pizza</h1>
+}
+else
+{
+    <h1>Tilføj Pizza</h1>
+}
 <div class="row">
     <div class="col">
         <form method="post">

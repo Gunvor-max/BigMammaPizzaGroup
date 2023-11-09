@@ -100,15 +100,11 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
 
             Items item = _repo.SearchItem(NytPizzaNummer);
 
-                NyToppingList.Add(NyDescription);
+            NyToppingList.Add(NyDescription);
 
-                item.Name = NytPizzaNavn;
-                item.Price = NyPris;
-                if (item is Pizza)
-                {
-                    Pizza p = item as Pizza;
-                    p.Toppings = NyToppingList;
-                }
+            item.Name = NytPizzaNavn;
+            item.Price = NyPris;
+            item.Description = ListToString();
             switch (Sort)
             {
                 case 1: AllItems = _repo.SortItemsNumber(); break;
@@ -130,6 +126,7 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
                 case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
                 default: AllItems = _repo.SortItemsNumber(); break;
             }
+            NytPizzaNummer = _repo.NextNumber();
             return Page();
         }
         public void OnPostPris()
@@ -152,7 +149,6 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
             AllItems = _repo.SortItemsNumber();
             Sort = 1;
             NytPizzaNummer = _repo.NextNumber();
-            
         }
 
         
