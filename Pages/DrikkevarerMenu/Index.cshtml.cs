@@ -65,7 +65,7 @@ namespace BigMammaPizzaGroup.Pages.DrikkevarerMenu
             Sort = 1;
             AllItemsD = _drinkMenuKort.SortItemsNumberD();
             Mad2 = Mad;
-            BurgersN = BurgersS;
+            DrinksN = DrinksS;
             return Page();
         }
         public IActionResult OnPostTilføj(int nummer)
@@ -95,8 +95,8 @@ namespace BigMammaPizzaGroup.Pages.DrikkevarerMenu
         public IActionResult OnPostDelete()
         {
             Mad = "";
-            BurgersS.Clear();
-            BurgersN = BurgersS;
+            DrinksS.Clear();
+            DrinksN = DrinksS;
             switch (Sort)
             {
                 case 1: AllItemsD = _drinkMenuKort.SortItemsNumberD(); break;
@@ -121,7 +121,16 @@ namespace BigMammaPizzaGroup.Pages.DrikkevarerMenu
         }
 
         public IActionResult OnPostCheckout()
-        { return RedirectToPage("/Checkout/Checkout"); }
+        {
+            //DrinksN = DrinksS;
+            //if (DrinksN.Count == 0)
+            //{
+            //    return Page();
+            //}
+            {
+                return RedirectToPage("/Checkout/Checkout");
+            }
+        }
 
     }
 }

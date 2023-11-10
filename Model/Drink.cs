@@ -16,6 +16,9 @@
         }
         public Drink(int number, string name, double price, string size)
         {
+            Number = number;
+            Name = name;
+            Price = price;
             Size = size;
         }
 

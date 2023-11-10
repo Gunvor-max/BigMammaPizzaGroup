@@ -182,6 +182,4 @@ public class DrinksRepository
         return $"{{{nameof(MenukortDrink)}={Output}}}";
     }
 }
-    }
-}
 

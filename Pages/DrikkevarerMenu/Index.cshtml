@@ -22,7 +22,7 @@
                         <input type="submit" value="nummer" asp-page-handler="Nummer">
                     </th>
                     <th>Navn</th>
-                    <th>Beskrivelse</th>
+                    <th>Størrelse</th>
                     <th>
                         <input type="submit" value="pris" asp-page-handler="Pris">
                     </th>
@@ -60,7 +60,7 @@
         <h4>Ordre</h4>
         <div class="row">
 
-            <div class="col; text-box" style="border:solid">
+            <div class="col" style="border:solid" class="text-box">
 
                 @foreach (Drink d in Model.DrinksN)
                 {
