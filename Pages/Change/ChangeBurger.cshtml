@@ -1,37 +1,38 @@
-﻿@* @page
+﻿@page
+@using BigMammaPizzaGroup.Model;
 @model BigMammaPizzaGroup.Pages.Change.ChangeBurgerModel
 @{
 }
 @if (@Model.Button)
 {
-    <h1>Ændre Pizza</h1>
+    <h1>Ændre Burger</h1>
 }
 else
 {
-    <h1>Tilføj Pizza</h1>
+    <h1>Tilføj Burger</h1>
 }
 <div class="row">
     <div class="col">
         <form method="post">
             <div class="form-group>">
-                <label>Pizza Nummer</label>: @Model.NytPizzaNummer<br />
-                <input type="hidden" asp-for="@Model.NytPizzaNummer" /><br />
+                <label>Burger Nummer</label>: @Model.NytBurgerNummer<br />
+                <input type="hidden" asp-for="@Model.NytBurgerNummer" /><br />
 
-                <label>Pizza Navn</label><br />
-                <input class="form-control" asp-for="@Model.NytPizzaNavn" /><br />
-                <span asp-validation-for="@Model.NytPizzaNavn" class="text-danger"></span><br />
+                <label>Burger Navn</label><br />
+                <input class="form-control" asp-for="@Model.NytBurgerNavn" /><br />
+                <span asp-validation-for="@Model.NytBurgerNavn" class="text-danger"></span><br />
 
 
-                <label>Pizza Pris</label><br />
+                <label>Burger Pris</label><br />
                 <input class="form-control" asp-for="@Model.NyPris" /><br />
 
-                <label>Pizza Topping</label> - @Model.NyDescription<br />
+                <label>Burger Topping</label> - @Model.NyDescription<br />
                 <input class="form-control" asp-for="@Model.NyDescription" /><br />
-                 *@
-               @*  <label>Pizza Pris</label><br />
+                 
+                <label>Burger Pris</label><br />
                 <input class="form-control" asp-for="@Model.NyPris" /><br />
 
-                <label>Pizza Topping</label>
+                <label>Burger Topping</label>
                 <input class="form-control" asp-for="@Model.NyDescription" /><br />
                 @if (@Model.Button)
                 {
@@ -39,7 +40,7 @@ else
                 }
                 else
                 {
-                    <input type="submit" value="Opret Ny Pizza" class="btn btn-success" asp-route-nummer="@Model.NytPizzaNummer" asp-page-handler="Opret">
+                    <input type="submit" value="Opret Ny Burger" class="btn btn-success" asp-route-nummer="@Model.NytBurgerNummer" asp-page-handler="Opret">
                 }
                 <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
             </div>
@@ -63,7 +64,7 @@ else
             </thead>
             <tbody>
                 <form method="post">
-                @foreach (Items p in Model.AllItems)
+                @foreach (Burger p in Model.AllItems)
                 {
                     <tr>
                         <td>@p.Number</td>
@@ -85,4 +86,3 @@ else
     </div>
 </div>
 
- *@
