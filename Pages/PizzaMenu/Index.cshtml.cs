@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using BigMammaPizzaGroup.Model;
 using BigMammaPizzaGroup.Services;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using BigMammaPizzaGroup.Pages.BurgerMenu;
 
 namespace BigMammaPizzaGroup.Pages.Menukort
 {
@@ -25,9 +26,9 @@ namespace BigMammaPizzaGroup.Pages.Menukort
         public Items Tilføjet { get; set; }
         public List<Items> AllItems{ get; set; }
         public static List<Items> PizzasS {  get; set; } = new List<Items>();
-        public static List<Burger> BurgersS { get; set; } = new List<Burger>();
-        public static List<Drink> DrinksS { get; set; } = new List<Drink>();
         public List<Items> PizzasN { get; set; }
+        public List<Burger> Burgers { get; set; }
+        public List<Drink> Drinks { get; set; }
         //public string NyDescription { get; set; }
 
         public void OnGet()
@@ -37,6 +38,9 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             Sort = 1;
             AllItems = _repo.SortItemsNumber();
             PizzasN = PizzasS;
+            //BurgerRepository repository = new BurgerRepository();
+            //BurgerMenuModel burgerrepo = new BurgerMenuModel(repository);
+            //Burgers = burgerrepo.BurgersN;
 
         }
 
@@ -79,7 +83,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             if (PizzasS.Count==0)
             {
                 Customer customer = new Customer();
-                Order order = new Order(customer, PizzasS, BurgersS, DrinksS);
+                Order order = new Order(customer, PizzasS, Burgers, Drinks);
             }
             PizzasS.Add(item);
             Mad = item.Name;
@@ -115,5 +119,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             }
             return Page();
         }
+        public IActionResult OnPostCheckout()
+        { return RedirectToPage("/Checkout/Checkout"); }
     }
 }
