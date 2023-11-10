@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BigMammaPizzaGroup.Model;
 using BigMammaPizzaGroup.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace BigMammaPizzaGroup.Pages.DrikkevarerMenu
 {
@@ -32,6 +34,18 @@ namespace BigMammaPizzaGroup.Pages.DrikkevarerMenu
         public List<Items> PizzasN { get; set; }
         public List<Burger> BurgersN { get; set; }
         public List<Drink> DrinksN { get; set; }
+        [Display(Name = "")]
+        public string? ASizes { get; set; } = string.Empty;
+
+        public static IEnumerable<SelectListItem>? AvailableSizes()
+        {
+            return new[]
+            {
+                new SelectListItem { Text = "33 cl", Value = "33"},
+                new SelectListItem { Text = "50 cl", Value = "50"},
+                new SelectListItem { Text = "1.5 L", Value = "1.5"}
+            };
+        }
 
         public void OnGet()
         {
@@ -40,6 +54,14 @@ namespace BigMammaPizzaGroup.Pages.DrikkevarerMenu
             AllItemsD = repo.SortItemsNumberD();
             repo.AddNumbersD();
             DrinksN = DrinksS;
+
+            //DrinksRepository drinksize = new DrinksRepository();
+            //var drinkoption = drinksize.GetAllDrinks();
+
+            //var model = new Drink();
+            //model.Size = new List<Drink>();
+
+            //drinksize. = new List<Drink>();
         }
 
         public IActionResult OnPostPris()

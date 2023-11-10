@@ -37,7 +37,16 @@
                     <tr>
                         <td>@d.Number</td>
                         <td>@d.Name</td>
-                        <td>@d.Size</td>
+                        <td>
+                            <div class="form-group" style="display: flex">
+                                <label for="sel1"></label>
+                                <form method="get">
+                                    <label asp-for="@Model.ASizes" class="control-label"></label>
+                                    <select asp-for="@Model.ASizes" asp-items="DrinksMenuModel.AvailableSizes()"></select>
+                                </form>
+                            </div>
+
+                           @*  @d.Size *@</td>
                         <td>@d.Price Kr.</td>
                         <form method="post">
                         <td>

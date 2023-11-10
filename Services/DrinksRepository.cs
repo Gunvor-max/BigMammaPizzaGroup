@@ -17,19 +17,17 @@ public class DrinksRepository
     private void PopulateDrinksRepository()
     {
         MenukortDrink.Clear();
-        MenukortDrink.Add(1, new Drink(1, "Coca Cola", 15, "33 cl"));
-        MenukortDrink.Add(2, new Drink(2, "Coca Cola", 20, "50 cl"));
-        MenukortDrink.Add(3, new Drink(3, "Coca Cola", 30, "1,5L"));
-        MenukortDrink.Add(4, new Drink(4, "Faxe Kondi", 15, "33 cl"));
-        MenukortDrink.Add(5, new Drink(5, "Faxe Kondi", 20, "50 cl"));
-        MenukortDrink.Add(6, new Drink(6, "Faxe Kondi", 30, "1,5L"));
+        MenukortDrink.Add(1, new Drink(1, "Coca Cola", 15, "33"));
+        MenukortDrink.Add(2, new Drink(2, "Coca Cola Zero", 15, "33"));
+        MenukortDrink.Add(3, new Drink(3, "Faxe Kondi", 15, "33 cl"));
+        MenukortDrink.Add(4, new Drink(4, "Faxe Kondi Free", 15, "33 cl"));
+        MenukortDrink.Add(5, new Drink(5, "Faxe Kondi Booster", 20, "33 cl"));
+        MenukortDrink.Add(6, new Drink(6, "Pepsi", 15, "33 cl"));
         MenukortDrink.Add(7, new Drink(7, "Pepsi Max", 15, "33 cl"));
-        MenukortDrink.Add(8, new Drink(8, "Pepsi Max", 20, "50 cl"));
-        MenukortDrink.Add(9, new Drink(9, "Pepsi Max", 30, "1,5L"));
-        MenukortDrink.Add(10, new Drink(10, "Appelsin Vand", 10, "33 cl"));
-        MenukortDrink.Add(11, new Drink(11, "Appelsin Vand", 15, "50 cl"));
-        MenukortDrink.Add(12, new Drink(12, "Ayran", 10, "250 Ml"));
-        MenukortDrink.Add(13, new Drink(13, "Gazoz", 10, "33 cl"));
+        MenukortDrink.Add(8, new Drink(8, "Appelsin Vand", 15, "33 cl"));
+        MenukortDrink.Add(9, new Drink(9, "Ayran", 12, "33 cl"));
+        MenukortDrink.Add(10, new Drink(10, "Gazoz", 12, "33 cl"));
+        MenukortDrink.Add(11, new Drink(11, "Grøn Monster", 20, "33 cl"));
 
     }
 
