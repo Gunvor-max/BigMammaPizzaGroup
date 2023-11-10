@@ -28,8 +28,8 @@ namespace BigMammaPizzaGroup.Pages.BurgerMenu
         public List<Burger> AllItemsb { get; set; }
         public static List<Items> PizzasS { get; set; } = new List<Items>();
         public static List<Burger> BurgersS { get; set; } = new List<Burger>();
-        public static List<Drink> DrinksS { get; set; } = new List<Drink>();
-        public List<Items> PizzasN { get; set; }
+        public static List<Drink> Drinks { get; set; } = new List<Drink>();
+        public List<Items> Pizzas { get; set; } = new List<Items>();
         public List<Burger> BurgersN { get; set; }
 
         public void OnGet()
@@ -77,17 +77,18 @@ namespace BigMammaPizzaGroup.Pages.BurgerMenu
                 case 3: AllItemsb = _burgerMenuKort.SortItemsPriceB(); AllItemsb.Reverse(); break;
             }
 
-            if (PizzasS.Count == 0)
-            {
-                Customer customer = new Customer();
-                Order order = new Order(customer, PizzasS, BurgersS, DrinksS);
-            }
+           
+            Customer customer = new Customer();
+            
+            
+           
+            
             BurgersS.Add(item);
             Mad = item.Name;
             Mad2 = Mad;
             BurgersN = BurgersS;
-
-
+            Order order = new Order(customer, PizzasS, BurgersS, Drinks);
+            Pizzas = order.Pizzas;
             return Page();
         }
 

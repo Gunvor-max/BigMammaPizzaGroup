@@ -68,7 +68,10 @@
         </button>
         <div class="row">
             <div class="col" style="border:solid" class="text-box">
-
+                @* @foreach (Pizza p in Model.Pizzas)
+                {
+                    <button class="btn btn-success">@p.Name</button>
+                } *@
                 @foreach (Burger b in Model.BurgersN)
                 {
                     <button class="btn btn-success">@b.Name</button>

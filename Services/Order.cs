@@ -6,10 +6,10 @@ namespace BigMammaPizzaGroup.Services
 {
     public class Order
     {
-        private Customer Customer {  get; set; }
-        private List<Items> Pizzas = new List<Items>();
-        private List<Burger> Burgers = new List<Burger>();
-        private List<Drink> Drinks  = new List<Drink>();
+        public Customer Customer {  get; set; }
+        public List<Items> Pizzas { get; set; } = new List<Items>();
+        public List<Burger> Burgers { get; set; } = new List<Burger>();
+        public List<Drink> Drinks { get; set; } = new List<Drink>();
         public bool TakeAway {  get; set; }
         public Order()
         {

@@ -38,9 +38,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             Sort = 1;
             AllItems = _repo.SortItemsNumber();
             PizzasN = PizzasS;
-            //BurgerRepository repository = new BurgerRepository();
-            //BurgerMenuModel burgerrepo = new BurgerMenuModel(repository);
-            //Burgers = burgerrepo.BurgersN;
+            
 
         }
 
@@ -79,18 +77,16 @@ namespace BigMammaPizzaGroup.Pages.Menukort
                 case 2: AllItems = _repo.SortItemsPrice(); break;
                 case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
             }
-            
-            if (PizzasS.Count==0)
-            {
-                Customer customer = new Customer();
-                Order order = new Order(customer, PizzasS, Burgers, Drinks);
-            }
+          
+            Customer customer = new Customer();
+                
+           
             PizzasS.Add(item);
             Mad = item.Name;
             Mad2 = Mad;
             PizzasN = PizzasS;
-            
 
+            Order order = new Order(customer, PizzasS, Burgers, Drinks);
             return Page();
         }
         public IActionResult OnPostDeleteOne(int nummer)

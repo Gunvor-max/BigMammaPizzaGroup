@@ -1,0 +1,88 @@
+﻿@* @page
+@model BigMammaPizzaGroup.Pages.Change.ChangeBurgerModel
+@{
+}
+@if (@Model.Button)
+{
+    <h1>Ændre Pizza</h1>
+}
+else
+{
+    <h1>Tilføj Pizza</h1>
+}
+<div class="row">
+    <div class="col">
+        <form method="post">
+            <div class="form-group>">
+                <label>Pizza Nummer</label>: @Model.NytPizzaNummer<br />
+                <input type="hidden" asp-for="@Model.NytPizzaNummer" /><br />
+
+                <label>Pizza Navn</label><br />
+                <input class="form-control" asp-for="@Model.NytPizzaNavn" /><br />
+                <span asp-validation-for="@Model.NytPizzaNavn" class="text-danger"></span><br />
+
+
+                <label>Pizza Pris</label><br />
+                <input class="form-control" asp-for="@Model.NyPris" /><br />
+
+                <label>Pizza Topping</label> - @Model.NyDescription<br />
+                <input class="form-control" asp-for="@Model.NyDescription" /><br />
+                 *@
+               @*  <label>Pizza Pris</label><br />
+                <input class="form-control" asp-for="@Model.NyPris" /><br />
+
+                <label>Pizza Topping</label>
+                <input class="form-control" asp-for="@Model.NyDescription" /><br />
+                @if (@Model.Button)
+                {
+                    <input type="submit" value="Gem ændringer" class="btn btn-success" asp-page-handler="Ændre">
+                }
+                else
+                {
+                    <input type="submit" value="Opret Ny Pizza" class="btn btn-success" asp-route-nummer="@Model.NytPizzaNummer" asp-page-handler="Opret">
+                }
+                <input type="submit" value="Fortryd" class="btn btn-danger" asp-page-handler="Cancel" />
+            </div>
+        </form>
+    </div>
+    <div class="col">
+        <form method="post">
+            Sorter efter
+            <input type="submit" value="nummer" class="btn btn-info" asp-page-handler="Nummer"/>
+            <input type="submit" value="pris" class="btn btn-info" asp-page-handler="Pris"/>
+        </form>
+        
+        <table class="table-hover">
+            <thead>
+                <tr>
+                    <th>Nummer</th>
+                    <th>Navn</th>
+                    <th>Beskrivelse</th>
+                    <th>pris</th>
+                </tr>
+            </thead>
+            <tbody>
+                <form method="post">
+                @foreach (Items p in Model.AllItems)
+                {
+                    <tr>
+                        <td>@p.Number</td>
+                        <td>@p.Name</td>
+                        <td>@p.Description</td>
+                        <td>@p.Price Kr.</td>
+                        <td>
+                           <input type="submit" value="Ændre" class="btn btn-secondary" asp-page-handler="ChangeItem" asp-route-nummer="@p.Number">
+                        </td>
+                            <td>
+                                <input type="submit" value="Slet" class="btn btn-danger" asp-page-handler="DeleteItem" asp-route-item="@p.Number">
+                            </td>
+                    </tr>  
+                }
+                </form>
+            </tbody>
+        </table>
+      
+    </div>
+</div>
+
+ *@
