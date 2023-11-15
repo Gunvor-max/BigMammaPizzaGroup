@@ -24,7 +24,9 @@ namespace BigMammaPizzaGroup.Pages.Change
         public double NyPris { get; set; }
         public void OnGet()
         {
+            NytBurgerNummer = Repo.NextNumberB();
             AllItems = Repo.SortItemsNumberB();
+            
         }
         public void OnPostChangeItem(int? nummer)
         {
@@ -36,11 +38,6 @@ namespace BigMammaPizzaGroup.Pages.Change
             NytBurgerNavn = item.Name;
             NyPris = item.Price;
             NyDescription = item.Description;
-            //if (item is Pizza)
-            //{
-            //    Pizza p = item as Pizza;
-            //    NyDescription = p.GetToppings();
-            //}
 
             switch (Sort)
             {
@@ -81,6 +78,7 @@ namespace BigMammaPizzaGroup.Pages.Change
                 default: AllItems = Repo.SortItemsNumberB(); break;
             }
             Button = false;
+            NytBurgerNummer = Repo.NextNumberB();
             return Page();
 
         }
@@ -106,7 +104,7 @@ namespace BigMammaPizzaGroup.Pages.Change
             }
             else if (Sort == 2 || Repo.SortItemsNumberB == Repo.SortItemsPriceB)
             {
-                NytBurgerNummer = Repo.NextNumberB(); AllItems.Reverse();
+                AllItems = Repo.SortItemsPriceB(); AllItems.Reverse();
                 Sort = 3;
             }
             NytBurgerNummer = Repo.NextNumberB();

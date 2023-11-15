@@ -17,7 +17,7 @@ namespace BigMammaPizzaGroup.Pages.Change
         public static int Sort { get; set; } = 1;
         public bool Button { get; set; }
         public string NytDrinkNavn { get; set; }
-        public string NyDescription { get; set; }
+        public string NyDescription { get; set; } = "";
         public int NytDrinkNummer { get; set; }
         public double NyPris { get; set; }
         public void OnGet()
@@ -43,6 +43,7 @@ namespace BigMammaPizzaGroup.Pages.Change
         }
         public IActionResult OnPostDeleteItem(int item)
         {
+            Repo.DeleteItem(item);
             switch (Sort)
             {
                 case 1: AllItems = Repo.SortItemsNumberD(); break;
@@ -73,6 +74,21 @@ namespace BigMammaPizzaGroup.Pages.Change
         }
         public IActionResult OnPost∆ndre()
         {
+            if (!ModelState.IsValid)
+            {
+                switch (Sort)
+                {
+                    case 1: AllItems = Repo.SortItemsNumberD(); break;
+                    case 2: AllItems = Repo.SortItemsPriceD(); break;
+                    case 3: AllItems = Repo.SortItemsPriceD(); AllItems.Reverse(); break;
+                    default: AllItems = Repo.SortItemsNumberD(); break;
+                }
+            }
+            
+            Drink drink = Repo.SearchItemD(NytDrinkNummer);
+            drink.Name = NytDrinkNavn;
+            drink.Price = NyPris;
+            Button = false;
             switch (Sort)
             {
                 case 1: AllItems = Repo.SortItemsNumberD(); break;
@@ -80,11 +96,23 @@ namespace BigMammaPizzaGroup.Pages.Change
                 case 3: AllItems = Repo.SortItemsPriceD(); AllItems.Reverse(); break;
                 default: AllItems = Repo.SortItemsNumberD(); break;
             }
-            Button = false;
             return Page();
         }
         public IActionResult OnPostOpret()
         {
+            if (!ModelState.IsValid)
+            {
+                switch (Sort)
+                {
+                    case 1: AllItems = Repo.SortItemsNumberD(); break;
+                    case 2: AllItems = Repo.SortItemsPriceD(); break;
+                    case 3: AllItems = Repo.SortItemsPriceD(); AllItems.Reverse(); break;
+                    default: AllItems = Repo.SortItemsNumberD(); break;
+                }
+            }
+            Drink drink = new Drink(Repo.NextNumberD(), NytDrinkNavn, NyPris, NyDescription);
+            drink.Number = Repo.NextNumberD();
+            Repo.AddItemD(drink);
             switch (Sort)
             {
                 case 1: AllItems = Repo.SortItemsNumberD(); break;
@@ -92,8 +120,6 @@ namespace BigMammaPizzaGroup.Pages.Change
                 case 3: AllItems = Repo.SortItemsPriceD(); AllItems.Reverse(); break;
                 default: AllItems = Repo.SortItemsNumberD(); break;
             }
-            Drink drink = new Drink(Repo.NextNumberD(), NytDrinkNavn, NyPris, NyDescription);
-            Repo.AddItemD(drink);
             return Page();
         }
         public IActionResult OnPostCancel()
