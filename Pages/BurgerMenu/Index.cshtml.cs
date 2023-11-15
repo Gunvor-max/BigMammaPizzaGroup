@@ -88,7 +88,7 @@ namespace BigMammaPizzaGroup.Pages.BurgerMenu
             Mad2 = Mad;
             BurgersN = BurgersS;
             Order order = new Order(customer, PizzasS, BurgersS, Drinks);
-            Pizzas = order.Pizzas;
+            order.Burgers = BurgersN;
             return Page();
         }
 
