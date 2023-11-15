@@ -7,7 +7,8 @@
         public double Price { get; set; }
         public int Number { get; set; }
         public BunType Bun { get; set; }
-        public List <string> Description = new List <string> ();
+        public List <string> DescriptionList = new List <string> ();
+        public string Description { get; set; } = "";
             
 
         //default constructor
@@ -23,21 +24,21 @@
             Name = name;
             Price = price;
             Bun = type;
-            Description = description; 
+            DescriptionList = description; 
 
         }
         public string AddTopping(string topping)
         {
-            Description.Add(topping);
+            DescriptionList.Add(topping);
             Price += 10;
             return topping;
         }
         public string GetToppings()
         {
             string topping = "";
-            foreach (string top in Description)
+            foreach (string top in DescriptionList)
             {
-                topping += top == Description[Description.Count-1] ? top : top + ", ";
+                topping += top == DescriptionList[DescriptionList.Count-1] ? top : top + ", ";
             }
             return topping;
         }

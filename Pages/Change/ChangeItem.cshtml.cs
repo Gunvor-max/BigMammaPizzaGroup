@@ -183,23 +183,7 @@ namespace BigMammaPizzaGroup.Pages.ChangeItem
             NytPizzaNummer = _repo.NextNumber();
             return Page();
         }
-        public IActionResult OnPostTilføj()
-        {
-            switch (Sort)
-            {
-                case 1: AllItems = _repo.SortItemsNumber(); break;
-                case 2: AllItems = _repo.SortItemsPrice(); break;
-                case 3: AllItems = _repo.SortItemsPrice(); AllItems.Reverse(); break;
-            }
-            if (!ModelState.IsValid)
-            {
-                
-                return Page();
-            }
-            NyToppingList.Add(NyDescription);
-            
-            return Page();
-        }
+       
 
         public IActionResult OnPostDeleteItem(int item) 
         {
