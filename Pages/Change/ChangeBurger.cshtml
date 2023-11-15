@@ -26,14 +26,9 @@ else
                 <label>Burger Pris</label><br />
                 <input class="form-control" asp-for="@Model.NyPris" /><br />
 
-                <label>Burger Topping</label> - @Model.NyDescription<br />
+                <label>Burger Topping</label>@Model.NyDescription<br />
                 <input class="form-control" asp-for="@Model.NyDescription" /><br />
-                 
-                <label>Burger Pris</label><br />
-                <input class="form-control" asp-for="@Model.NyPris" /><br />
-
-                <label>Burger Topping</label>
-                <input class="form-control" asp-for="@Model.NyDescription" /><br />
+                
                 @if (@Model.Button)
                 {
                     <input type="submit" value="Gem ændringer" class="btn btn-success" asp-page-handler="Ændre">
