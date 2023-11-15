@@ -53,6 +53,7 @@ namespace BigMammaPizzaGroup.Pages.DrikkevarerMenu
             DrinksRepository repo = new DrinksRepository();
             AllItemsD = repo.SortItemsNumberD();
             repo.AddNumbersD();
+
             DrinksN = DrinksS;
 
             //DrinksRepository drinksize = new DrinksRepository();

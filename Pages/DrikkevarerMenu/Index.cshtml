@@ -10,25 +10,20 @@
 
 <div class="row">
     <div class="col">
-
+        <form method="post">
         Sorter efter
-        @* <button type="submit" value="nummer" asp-page-handler="Nummer" />
-        <button type="submit" value="pris" asp-page-handler="Pris" /> *@
+        <input type="submit" value="nummer" asp-page-handler="Nummer" />
+        <input type="submit" value="pris" asp-page-handler="Pris" />
+        </form>
         <table class="table-hover">
             <thead>
-                <form method="post">
+                
                 <tr>
-                    <th>
-                        <input type="submit" value="nummer" asp-page-handler="Nummer">
-                    </th>
+                    <th>Nummer</th>
                     <th>Navn</th>
                     <th>Størrelse</th>
-                    <th>
-                        <input type="submit" value="pris" asp-page-handler="Pris">
-                    </th>
-
+                    <th>Pris</th>
                 </tr>
-                </form>
             </thead>
             <tbody>
 
