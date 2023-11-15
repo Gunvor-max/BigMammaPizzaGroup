@@ -27,6 +27,8 @@ internal class Program
         builder.Services.AddSingleton(new Order());
         builder.Services.AddSingleton(new DrinksRepository());
 
+
+
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

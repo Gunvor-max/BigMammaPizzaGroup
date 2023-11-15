@@ -1,6 +1,7 @@
 ﻿using BigMammaPizzaGroup.Model;
 using System.Text.Json;
 using System.Text;
+using BigMammaPizzaGroup.Pages.Ordre;
 
 namespace BigMammaPizzaGroup.Services
 {
@@ -18,7 +19,7 @@ namespace BigMammaPizzaGroup.Services
         // konstruktør
         public MenuCardJson()
         {
-            _menu = ReadFromJson(); 
+            _menu = ReadFromJson();
         }
         public Items AddItem(Items item)
         {
@@ -208,9 +209,10 @@ namespace BigMammaPizzaGroup.Services
             return $"{{{nameof(Menu)}={Output}}}";
         }
 
-      //Helping methods for writing and reading to json file
+        //Helping methods for writing and reading to json file
 
         private const string FILENAME = "MenuCard.json";
+        private const string FILENAMEORDRE = "Ordre.json";
 
         private Dictionary<int, Items> ReadFromJson()
         {
@@ -236,6 +238,32 @@ namespace BigMammaPizzaGroup.Services
             JsonSerializer.Serialize(writer, _menu);
             fs.Close();
         }
+
+
+        //private Dictionary<int, Items> ReadFromJsonOrdre()
+        //{
+        //    if (File.Exists(FILENAMEORDRE))
+        //    {
+        //        StreamReader reader = File.OpenText(FILENAMEORDRE);
+        //        Dictionary<int, Items> katalog = JsonSerializer.Deserialize<Dictionary<int, Items>>(reader.ReadToEnd());
+        //        reader.Close();
+        //        return katalog;
+        //    }
+        //    else
+        //    {
+        //        return new Dictionary<int, Items>();
+        //    }
+
+        //}
+
+
+        //private void WriteToJsonOrdre()
+        //{
+        //    FileStream fs = new FileStream(FILENAMEORDRE, FileMode.Create);
+        //    Utf8JsonWriter writer = new Utf8JsonWriter(fs);
+        //    JsonSerializer.Serialize(writer, _menu);
+        //    fs.Close();
+        //}
 
     }
 }

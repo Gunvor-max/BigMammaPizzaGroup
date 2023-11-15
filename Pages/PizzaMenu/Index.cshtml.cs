@@ -4,6 +4,7 @@ using BigMammaPizzaGroup.Model;
 using BigMammaPizzaGroup.Services;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using BigMammaPizzaGroup.Pages.BurgerMenu;
+using System.Text.Json;
 
 namespace BigMammaPizzaGroup.Pages.Menukort
 {
@@ -86,6 +87,13 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             Mad2 = Mad;
             PizzasN = PizzasS;
 
+            static List<Items> Ordre()
+            {
+                var items = new List<Items>();
+                items = PizzasS;
+                return items;
+            }
+
             Order order = new Order(customer, PizzasS, Burgers, Drinks);
             return Page();
         }
@@ -116,6 +124,9 @@ namespace BigMammaPizzaGroup.Pages.Menukort
             return Page();
         }
         public IActionResult OnPostCheckout()
-        { return RedirectToPage("/Checkout/Checkout"); }
+        { return RedirectToPage("/Ordre/CheckOut"); }
+
     }
+
+
 }
