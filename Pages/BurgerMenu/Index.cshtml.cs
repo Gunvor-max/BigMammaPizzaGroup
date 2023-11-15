@@ -88,7 +88,21 @@ namespace BigMammaPizzaGroup.Pages.BurgerMenu
             Mad2 = Mad;
             BurgersN = BurgersS;
             Order order = new Order(customer, PizzasS, BurgersS, Drinks);
-            Pizzas = order.Pizzas;
+            order.Burgers = BurgersN;
+            return Page();
+        }
+
+        public IActionResult OnPostDeleteOne(int nummer)
+        {
+
+            BurgersS.Remove(_burgerMenuKort.SearchItemB(nummer));
+            BurgersN = BurgersS;
+            switch (Sort)
+            {
+                case 1: AllItemsb = _burgerMenuKort.SortItemsNumberB(); break;
+                case 2: AllItemsb = _burgerMenuKort.SortItemsPriceB(); break;
+                case 3: AllItemsb = _burgerMenuKort.SortItemsPriceB(); AllItemsb.Reverse(); break;
+            }
             return Page();
         }
 

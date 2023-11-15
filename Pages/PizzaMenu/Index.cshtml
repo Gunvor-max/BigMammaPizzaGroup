@@ -19,10 +19,10 @@ Sorter efter
     <thead>
                 
         <tr>
-            <th>Nummer</th>
-            <th>Navn</th>
-            <th>Beskrivelse</th>
-            <th>Pris</th>
+                    <th style="padding-right:0.5rem">Nr.</th>
+                    <th style="padding-right:2rem">Navn</th>
+                    <th style="padding-right:0.5rem">Beskrivelse</th>
+                    <th style="padding-right:0.5rem">Pris</th>
         </tr>
                 
     </thead>
@@ -31,11 +31,11 @@ Sorter efter
         @foreach (Items p in Model.AllItems)
         {   
             <tr>
-                <td>@p.Number</td>
-                <td>@p.Name</td>
+                        <td style="padding-right:0.5rem">@p.Number</td>
+                        <td style="padding-right:2rem">@p.Name</td>
 
-                <td>@p.Description</td>
-                <td>@p.Price Kr.</td>
+                        <td style="padding-right:0.5rem">@p.Description</td>
+                        <td style="padding-right:0.5rem">@p.Price Kr.</td>
                 <form method="post">
                         <td><button class="btn btn-success" type="submit" value="Tilføj til ordre" asp-page-handler="Tilføj" asp-route-nummer="@p.Number">
                             <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">

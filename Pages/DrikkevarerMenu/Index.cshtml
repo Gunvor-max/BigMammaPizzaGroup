@@ -19,10 +19,10 @@
             <thead>
                 
                 <tr>
-                    <th>Nummer</th>
-                    <th>Navn</th>
-                    <th>Størrelse</th>
-                    <th>Pris</th>
+                    <th style="padding-right:0.5rem">Nr.</th>
+                    <th style="padding-right:2rem">Navn</th>
+                    <th style="padding-right:0.5rem">Størrelse</th>
+                    <th style="padding-right:0.5rem">Pris</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,8 +30,8 @@
                 @foreach (Drink d in Model.AllItemsD)
                 {
                     <tr>
-                        <td>@d.Number</td>
-                        <td>@d.Name</td>
+                        <td style="padding-right:0.5rem">@d.Number</td>
+                        <td style="padding-right:2rem">@d.Name</td>
                         <td>
                             <div class="form-group" style="display: flex">
                                 <label for="sel1"></label>
@@ -42,7 +42,7 @@
                             </div>
 
                            @*  @d.Size *@</td>
-                        <td>@d.Price Kr.</td>
+                        <td style="padding-right:0.5rem">@d.Price Kr.</td>
                         <form method="post">
                         <td>
                             <button class="btn btn-success" type="submit" value="Tilføj til ordre" asp-page-handler="Tilføj" asp-route-nummer="@d.Number">
