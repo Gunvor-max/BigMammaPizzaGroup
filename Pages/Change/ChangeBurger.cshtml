@@ -64,7 +64,7 @@ else
                     <tr>
                         <td>@p.Number</td>
                         <td>@p.Name</td>
-                        <td>@p.Description</td>
+                        <td>@p.GetToppings()</td>
                         <td>@p.Price Kr.</td>
                         <td>
                            <input type="submit" value="Ændre" class="btn btn-secondary" asp-page-handler="ChangeItem" asp-route-nummer="@p.Number">
