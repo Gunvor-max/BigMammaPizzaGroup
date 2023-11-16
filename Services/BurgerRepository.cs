@@ -132,7 +132,7 @@ namespace BigMammaPizzaGroup.Services
 
         public int NextNumberB()
         {
-            for (int i = 1; i < MenukortBurger.Count; i++)
+            for (int i = 1; i <= MenukortBurger.Count; i++)
             {
                 if (!MenukortBurger.ContainsKey(i))
                 {
