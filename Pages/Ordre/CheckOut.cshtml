@@ -41,6 +41,22 @@
                 </ul>
             }
 
+            @foreach (Drink p in Model.Order3)
+            {
+                <ul style="display:inline-flex" class="list-unstyled list-group list-group-horizontal">
+                    <li style="height:auto">
+                        <button style="width:unset; display:inline" class="btn btn-success">
+                            @p.Name
+                        </button>
+                    </li>
+                    <li style="padding:0px;height:auto">
+                        <form method="post">
+                            <button class="btn-close btn-danger; padding:0px" asp-route-nummer="@p.Number" asp-page-handler="DeleteOne"></button>
+                        </form>
+                    </li>
+                </ul>
+            }
+
         </div>
         <div class="col">
             <form method="post">

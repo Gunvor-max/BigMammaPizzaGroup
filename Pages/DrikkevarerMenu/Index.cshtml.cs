@@ -10,13 +10,15 @@ namespace BigMammaPizzaGroup.Pages.DrikkevarerMenu
     public class DrinksMenuModel : PageModel
     {
         public DrinksRepository _drinkMenuKort;
+        private Order _order;
 
         public List<Drink> DrinkMenukort { get; set; }
 
         //Dependency constructor 
-        public DrinksMenuModel(DrinksRepository repob)
+        public DrinksMenuModel(DrinksRepository repob, Order order)
         {
             _drinkMenuKort = repob;
+            _order = order;
         }
 
 
@@ -101,12 +103,8 @@ namespace BigMammaPizzaGroup.Pages.DrikkevarerMenu
                 case 3: AllItemsD = _drinkMenuKort.SortItemsPriceD(); AllItemsD.Reverse(); break;
             }
 
-            if (PizzasS.Count == 0)
-            {
-                Customer customer = new Customer();
-                Order order = new Order(customer, PizzasS, BurgersS, DrinksS);
-            }
             DrinksS.Add(item);
+            _order.Drinks.Add(item);
             Mad = item.Name;
             Mad2 = Mad;
             DrinksN = DrinksS;
@@ -151,9 +149,10 @@ namespace BigMammaPizzaGroup.Pages.DrikkevarerMenu
             //    return Page();
             //}
             {
-                return RedirectToPage("/Checkout/Checkout");
+                return RedirectToPage("/Ordre/Checkout");
             }
         }
+
 
     }
 }

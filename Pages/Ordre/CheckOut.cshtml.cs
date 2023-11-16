@@ -11,6 +11,7 @@ namespace BigMammaPizzaGroup.Pages.Ordre
 
         public List<Items> Order { get; set; }
         public List<Burger> Order2 { get; set; }
+        public List<Drink> Order3 { get; set; }
 
         public CheckOutModel(Order order)
         {
@@ -21,6 +22,7 @@ namespace BigMammaPizzaGroup.Pages.Ordre
         {
             Order = _order.Pizzas;
             Order2 = _order.Burgers;
+            Order3 = _order.Drinks;
 
 
         }
