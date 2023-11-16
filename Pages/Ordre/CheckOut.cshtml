@@ -1,6 +1,6 @@
 ﻿@page
 @using BigMammaPizzaGroup.Model;
-@model BigMammaPizzaGroup.Pages.Checkout.CheckoutModel;
+@model BigMammaPizzaGroup.Pages.Ordre.CheckOutModel;
 @{
 }
 <div style="justify-items: flex-start" class="col">
@@ -9,7 +9,23 @@
 
         <div class="col" style="border:solid" class="text-box">
 
-            @foreach (Items p in CheckOutModel.PizzasS)
+            @foreach (Items p in Model.Order) 
+            {
+              <ul style="display:inline-flex" class="list-unstyled list-group list-group-horizontal">
+                    <li style="height:auto">
+                        <button style="width:unset; display:inline" class="btn btn-success">
+                            @p.Number @p.Name
+                        </button>
+                    </li>
+                    <li style="padding:0px;height:auto">
+                        <form method="post">
+                            <button class="btn-close btn-danger; padding:0px" asp-route-nummer="@p.Number" asp-page-handler="DeleteOne"></button>
+                        </form>
+                    </li>
+                </ul> 
+            }
+
+            @foreach (Burger p in Model.Order2)
             {
                 <ul style="display:inline-flex" class="list-unstyled list-group list-group-horizontal">
                     <li style="height:auto">
@@ -24,6 +40,7 @@
                     </li>
                 </ul>
             }
+
         </div>
         <div class="col">
             <form method="post">
@@ -35,7 +52,7 @@
                 <button style="width: unset" class="btn btn-success" asp-page-handler="Checkout">
                     <ul class="list-unstyled list-group list-group-horizontal">
                         <li style="padding-right: 5px; height:auto">
-                            <p>Gå til checkout</p>
+                            <p>Bestil Ordre</p>
                         </li>
                         <li>
                             <i>

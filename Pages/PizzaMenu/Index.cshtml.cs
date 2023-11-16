@@ -12,11 +12,13 @@ namespace BigMammaPizzaGroup.Pages.Menukort
     {
         //instance field of Pizzarepository 
         private IMenucard _repo;
+        private Order _order;
 
         //Dependency constructor 
-        public PizzaMenuModel(IMenucard repo)
+        public PizzaMenuModel(IMenucard repo, Order order)
         {
             _repo = repo;
+            _order = order;
         }
         //property til viewet
         public static string Mad {  get; set; }
@@ -83,6 +85,7 @@ namespace BigMammaPizzaGroup.Pages.Menukort
                 
            
             PizzasS.Add(item);
+            _order.Pizzas.Add(item);
             Mad = item.Name;
             Mad2 = Mad;
             PizzasN = PizzasS;

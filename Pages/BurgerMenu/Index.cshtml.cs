@@ -8,13 +8,15 @@ namespace BigMammaPizzaGroup.Pages.BurgerMenu
     public class BurgerMenuModel : PageModel
     {
         public BurgerRepository _burgerMenuKort;
+        private Order _order;
 
         public List<Burger> BurgerMenukort { get; set; }
 
         //Dependency constructor 
-        public BurgerMenuModel(BurgerRepository repob)
+        public BurgerMenuModel(BurgerRepository repob, Order order)
         {
             _burgerMenuKort = repob;
+            _order = order;
         }
 
 
@@ -79,11 +81,12 @@ namespace BigMammaPizzaGroup.Pages.BurgerMenu
 
            
             Customer customer = new Customer();
-            
-            
-           
-            
+
+
+
+
             BurgersS.Add(item);
+            _order.Burgers.Add(item);
             Mad = item.Name;
             Mad2 = Mad;
             BurgersN = BurgersS;
@@ -119,6 +122,9 @@ namespace BigMammaPizzaGroup.Pages.BurgerMenu
             }
             return Page();
         }
+
+        public IActionResult OnPostCheckout()
+        { return RedirectToPage("/Ordre/CheckOut"); }
 
     }
 }

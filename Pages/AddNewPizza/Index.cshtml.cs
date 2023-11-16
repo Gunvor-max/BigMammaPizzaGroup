@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BigMammaPizzaGroup.Pages.AddNewPizza
 {
-    //[Authorize]
+    [Authorize]
     public class IndexModel : PageModel
     {
         private IMenucard _repo;

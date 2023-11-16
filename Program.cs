@@ -23,9 +23,9 @@ internal class Program
 
         //Indsætter pizzarepository
         builder.Services.AddSingleton<IMenucard>(new MenuCardJson());
-        builder.Services.AddSingleton(new BurgerRepository());
-        builder.Services.AddSingleton(new Order());
-        builder.Services.AddSingleton(new DrinksRepository());
+        builder.Services.AddSingleton<BurgerRepository>(new BurgerRepository());
+        builder.Services.AddSingleton<Order>(new Order());
+        builder.Services.AddSingleton<DrinksRepository>(new DrinksRepository());
 
 
 

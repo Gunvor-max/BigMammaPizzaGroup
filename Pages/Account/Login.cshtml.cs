@@ -37,7 +37,7 @@ namespace BigMammaPizzaGroup.Pages.Account
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity));
 
-                return RedirectToPage("/AddNewPizza/Index");
+                return RedirectToPage("/DashBoard/ControlPanel");
             }
             return RedirectToPage("/Account/AccessDenied");
         }
