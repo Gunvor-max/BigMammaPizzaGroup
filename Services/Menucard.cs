@@ -222,7 +222,7 @@ namespace BigMammaPizzaGroup.Services
 
         public int NextNumber()
         {
-            for (int i = 1; i < Menu.Count; i++)
+            for (int i = 1; i <= Menu.Count; i++)
             {
                 if (!Menu.ContainsKey(i))
                 {
